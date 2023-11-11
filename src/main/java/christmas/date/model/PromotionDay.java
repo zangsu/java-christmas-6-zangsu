@@ -1,9 +1,10 @@
 package christmas.date.model;
 
+import christmas.constance.Const;
+import christmas.constance.ExceptionMessage;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Set;
-import net.bytebuddy.asm.Advice.Local;
 
 /**
  * 프로모션에서 사용할 날짜 정보입니다.
@@ -40,8 +41,15 @@ public class PromotionDay {
     }
 
     public static PromotionDay of(int date) {
-        LocalDate localDate = LocalDate.of(2023, 12, date);
+        validateDate(date);
+        LocalDate localDate = LocalDate.of(Const.YEAR, Const.MONTH, date);
         return new PromotionDay(localDate);
+    }
+
+    private static void validateDate(int date){
+        if(date < Const.DECEMBER_DATE_START || date > Const.DECEMBER_DATE_END){
+            throw ExceptionMessage.INVALID_DATE_NUMBER.makeException();
+        }
     }
 
     /**
@@ -79,6 +87,6 @@ public class PromotionDay {
      * @return 양수 - 크리스마스 이전의 날인 경우 <br> 0 - 크리스마스 당일인 경우 <br> 음수 - 크리스마스 이후의 날일 경우
      */
     public int getDDayFromXMax() {
-        return this.localDate.compareTo(christmas);
+        return christmas.compareTo(this.localDate);
     }
 }
