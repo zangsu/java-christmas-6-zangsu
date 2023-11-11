@@ -1,13 +1,16 @@
 package christmas.constance;
 
-public enum ExceptionMessage {
-    INVALID_DATE_NUMBER(String.format("잘못된 날짜입니다. %d ~ %d 사이의 숫자를 입력해 주세요",
-            Const.DECEMBER_DATE_START, Const.DECEMBER_DATE_END));
+public enum PromotionException {
+    INVALID_DATE("유효하지 않은 날짜입니다. 다시 입력해 주세요."),
+    INVALID_ORDER("유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    ;
+
+    public static final String PREFIX = "[ERROR] ";
     private final String message;
-    ExceptionMessage(String message){
+
+    PromotionException(String message){
         this.message = message;
     }
-    public static final String PREFIX = "[ERROR] ";
 
     public String getMessage() {
         return PREFIX + message;
