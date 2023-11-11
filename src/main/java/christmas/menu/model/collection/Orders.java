@@ -1,6 +1,7 @@
 package christmas.menu.model.collection;
 
 import christmas.constance.Const;
+import christmas.constance.MenuConst;
 import christmas.constance.PromotionException;
 import christmas.menu.model.Menu;
 import christmas.menu.model.MenuAndCount;
@@ -42,7 +43,7 @@ public class Orders {
     }
 
     private void addMenu(String order){
-        String[] splitOrder = order.split(Const.MENU_AND_COUNT_DELIMITER);
+        String[] splitOrder = order.split(MenuConst.MENU_AND_COUNT_DELIMITER);
         Menu menu = Menu.from(splitOrder[0]);
         int count = Integer.parseInt(splitOrder[1]);
         addMenu(menu, count);
@@ -64,7 +65,7 @@ public class Orders {
 
     private void validateOrderSize() {
         int orderCount = orders.keySet().size();
-        if(orderCount < Const.TOTAL_MENU_AMOUNT_MIN){
+        if(orderCount < MenuConst.TOTAL_MENU_AMOUNT_MIN){
             throw PromotionException.INVALID_ORDER.makeException();
         }
     }
@@ -97,10 +98,10 @@ public class Orders {
     }
 
     private void validateAmount(Integer count) {
-        if(count < Const.EACH_MENU_AMOUNT_MIN){
+        if(count < MenuConst.EACH_MENU_AMOUNT_MIN){
             throw PromotionException.INVALID_ORDER.makeException();
         }
-        if(totalOrderAmount + count > Const.TOTAL_MENU_AMOUNT_MAX){
+        if(totalOrderAmount + count > MenuConst.TOTAL_MENU_AMOUNT_MAX){
             throw PromotionException.INVALID_ORDER.makeException();
         }
     }
