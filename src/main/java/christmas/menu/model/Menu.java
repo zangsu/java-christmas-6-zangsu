@@ -37,4 +37,16 @@ public enum Menu {
                 .findFirst()
                 .orElseThrow(PromotionException.NO_SUCH_MENU::makeException);
     }
+
+    public MenuType getType(){
+        return this.type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }
