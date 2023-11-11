@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class OrderSheet1Test {
+class OrdersTest {
 
     @Nested
-    @DisplayName("OrderSheet 생성 테스트")
-    class OrderSheet1_생성_테스트 {
+    @DisplayName("Orders 생성 테스트")
+    class Orders_생성_테스트 {
 
         @Test
-        @DisplayName("각 메뉴를 한번씩 주문하면 OrderSheet가 정상적으로 생성된다.")
+        @DisplayName("각 메뉴를 한번씩 주문하면 Orders가 정상적으로 생성된다.")
         void 한_번씩_주문(){
             Assertions.assertThatNoException()
                     .isThrownBy(() ->
