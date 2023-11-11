@@ -40,7 +40,7 @@ public class PromotionDay {
         this.localDate = localDate;
     }
 
-    public static PromotionDay of(int date) {
+    public static PromotionDay from(int date) {
         validateDate(date);
         LocalDate localDate = LocalDate.of(Const.YEAR, Const.MONTH, date);
         return new PromotionDay(localDate);

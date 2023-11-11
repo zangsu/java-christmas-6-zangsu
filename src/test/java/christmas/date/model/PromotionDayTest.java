@@ -18,7 +18,7 @@ class PromotionDayTest {
         public void 객체_정상_생성_테스트(int date) {
 
             Assertions.assertThatNoException()
-                    .isThrownBy(() -> PromotionDay.of(date));
+                    .isThrownBy(() -> PromotionDay.from(date));
         }
 
         @ParameterizedTest(name = "12월 {0}일의 객체는 생성을 시도하면 예외가 발생한다.")
@@ -26,7 +26,7 @@ class PromotionDayTest {
         public void 객체_생성_예외_테스트(int date) {
 
             Assertions.assertThatIllegalArgumentException()
-                    .isThrownBy(() -> PromotionDay.of(date))
+                    .isThrownBy(() -> PromotionDay.from(date))
                     .withMessage(ExceptionMessage.INVALID_DATE_NUMBER.getMessage());
         }
     }
@@ -44,7 +44,7 @@ class PromotionDayTest {
                 "31, -6"
         })
         void D_day_기능_테스트(int date, int d_day) {
-            PromotionDay promotionDay = PromotionDay.of(date);
+            PromotionDay promotionDay = PromotionDay.from(date);
             Assertions.assertThat(promotionDay.getDDayFromXMax())
                     .isEqualTo(d_day);
         }
@@ -57,7 +57,7 @@ class PromotionDayTest {
         @ParameterizedTest(name = "12월 {0}은 평일 (일 ~ 목) 입니다.")
         @ValueSource(ints = {3, 4, 5, 6, 7, 26, 27, 28, 31})
         void 평일_테스트(int date) {
-            PromotionDay promotionDay = PromotionDay.of(date);
+            PromotionDay promotionDay = PromotionDay.from(date);
             Assertions.assertThat(promotionDay.isWeekDay())
                     .isTrue();
             Assertions.assertThat(promotionDay.isWeekend())
@@ -67,7 +67,7 @@ class PromotionDayTest {
         @ParameterizedTest(name = "12월 {0}일은 주말 (금, 토) 입니다.")
         @ValueSource(ints = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30})
         void 주말_테스트(int date) {
-            PromotionDay promotionDay = PromotionDay.of(date);
+            PromotionDay promotionDay = PromotionDay.from(date);
             Assertions.assertThat(promotionDay.isWeekDay())
                     .isFalse();
             Assertions.assertThat(promotionDay.isWeekend())
@@ -82,7 +82,7 @@ class PromotionDayTest {
         @ParameterizedTest(name = "12월 {0}일은 스페셜데이 입니다.")
         @ValueSource(ints = {3, 10, 17, 24, 25, 31})
         void specialDayTest(int date){
-            PromotionDay specialDay = PromotionDay.of(date);
+            PromotionDay specialDay = PromotionDay.from(date);
             Assertions.assertThat(specialDay.isSpecialDay())
                     .isTrue();
         }
@@ -90,7 +90,7 @@ class PromotionDayTest {
         @ParameterizedTest(name = "12월 {0}일은 스페셜데이가 아닙니다..")
         @ValueSource(ints = {1, 2, 4, 5, 9, 23, 26, 30})
         void noSpecialDayTest(int date){
-            PromotionDay noSpecialDay = PromotionDay.of(date);
+            PromotionDay noSpecialDay = PromotionDay.from(date);
             Assertions.assertThat(noSpecialDay.isSpecialDay())
                     .isFalse();
         }
