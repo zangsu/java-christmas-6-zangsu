@@ -10,8 +10,16 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+/**
+ * 고객의 주문을 처리하기 위한 일급 컬렉션의 변형입니다. <br>
+ * 주문 데이터를 반환할 때는 {@link OrderSheet} 객체를 사용합니다.
+ */
 public class Orders {
     private final EnumMap<Menu, Integer> orders = new EnumMap<>(Menu.class);
+
+    /**
+     * 총 주문 메뉴의 개수를 저장하며, 해당 개수는 20개를 넘어가서는 안됩니다.
+     */
     private int totalOrderAmount = 0;
 
     //TODO : 입력받는 order들은 항상 [$메뉴 이름]-[$숫자] 형식이어야 한다.
@@ -30,15 +38,7 @@ public class Orders {
     public Orders(String... orders){
         Arrays.stream(orders)
                 .forEach(this::addMenu);
-        validateOrderSize();
-        validateContainsNonDrink();
-    }
-
-    private void validateOrderSize() {
-        int orderCount = orders.keySet().size();
-        if(orderCount < Const.TOTAL_MENU_AMOUNT_MIN){
-            throw PromotionException.TOTAL_AMOUNT_UNDER_MIN.makeException();
-        }
+        validateOrders();
     }
 
     private void addMenu(String order){
@@ -47,48 +47,71 @@ public class Orders {
         int count = Integer.parseInt(splitOrder[1]);
         addMenu(menu, count);
     }
+
     private void addMenu(Menu menu, Integer count){
-        validate(menu, count);
+        validateEachOrder(menu, count);
         totalOrderAmount += count;
         orders.put(menu, count);
     }
 
-    private void validate(Menu menu, Integer count) {
-        validateDuplication(menu);
-        validateAmount(count);
+    /**
+     * 해당 주석 아래에는 전체 메뉴의 추가가 끝난 이후 수행되는 검등들이 위치합니다.
+     */
+    private void validateOrders() {
+        validateOrderSize();
+        validateContainsNonDrink();
     }
 
-    private void validateDuplication(Menu menu) {
-        if(orders.containsKey(menu)){
-            throw PromotionException.DUPLICATED_MENU.makeException();
-        }
-    }
-
-    private void validateAmount(Integer count) {
-        if(count < Const.EACH_MENU_AMOUNT_MIN){
-            throw PromotionException.EACH_AMOUNT_UNDER_MIN.makeException();
-        }
-        if(totalOrderAmount + count > Const.TOTAL_MENU_AMOUNT_MAX){
-            throw PromotionException.TOTAL_AMOUNT_OVER_MAX.makeException();
+    private void validateOrderSize() {
+        int orderCount = orders.keySet().size();
+        if(orderCount < Const.TOTAL_MENU_AMOUNT_MIN){
+            throw PromotionException.INVALID_ORDER.makeException();
         }
     }
 
     private void validateContainsNonDrink() {
         int nonDrinkCount = getNonDrinkCount();
         if(nonDrinkCount == 0){
-            throw PromotionException.ALL_DRINK_ORDER.makeException();
+            throw PromotionException.INVALID_ORDER.makeException();
         }
     }
-
     private int getNonDrinkCount() {
         return (int) orders.keySet().stream()
                 .filter(menu -> menu.getType() != MenuType.DRINK)
                 .count();
     }
 
+    /**
+     * 해당 주석 하위에는 각 주문이 추가될 때 마다 수행되는 검증 메서드가 위치합니다.
+     */
+
+    private void validateEachOrder(Menu menu, Integer count) {
+        validateDuplication(menu);
+        validateAmount(count);
+    }
+
+    private void validateDuplication(Menu menu) {
+        if(orders.containsKey(menu)){
+            throw PromotionException.INVALID_ORDER.makeException();
+        }
+    }
+
+    private void validateAmount(Integer count) {
+        if(count < Const.EACH_MENU_AMOUNT_MIN){
+            throw PromotionException.INVALID_ORDER.makeException();
+        }
+        if(totalOrderAmount + count > Const.TOTAL_MENU_AMOUNT_MAX){
+            throw PromotionException.INVALID_ORDER.makeException();
+        }
+    }
+
+    /**
+     * 주문을 확인하기 위한 불변 클래스 {@link OrderSheet}를 반환합니다.
+     */
     public OrderSheet getOrderSheet(){
         return new OrderSheet(this.getOrders());
     }
+
     private List<MenuAndCount> getOrders() {
         return orders.entrySet().stream()
                 .map(this::getMenuAndCount)

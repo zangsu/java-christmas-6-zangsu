@@ -38,7 +38,7 @@ class MenuTest {
         void 생성_실패(String menuName){
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() -> Menu.from(menuName))
-                    .withMessage(PromotionException.NO_SUCH_MENU.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
         @ParameterizedTest(name = "잘못된 이름인 \"{0}\"을 사용하면 예외가 발생한다.")
@@ -46,7 +46,7 @@ class MenuTest {
         void 올바르지_않은_형식(String inputName){
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() -> Menu.from(inputName))
-                    .withMessage(PromotionException.NO_SUCH_MENU.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
     }
 }

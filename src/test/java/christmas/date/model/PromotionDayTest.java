@@ -27,7 +27,7 @@ class PromotionDayTest {
 
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() -> PromotionDay.from(date))
-                    .withMessage(PromotionException.INVALID_DATE_NUMBER.getMessage());
+                    .withMessage(PromotionException.INVALID_DATE.getMessage());
         }
     }
 

@@ -31,7 +31,7 @@ class OrdersTest {
                     .isThrownBy(() ->
                             new Orders()
                     )
-                    .withMessage(PromotionException.TOTAL_AMOUNT_UNDER_MIN.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
         @Test
         @DisplayName("메뉴를 중복 주문하면 예외가 발생한다.")
@@ -39,7 +39,7 @@ class OrdersTest {
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
                             new Orders("티본스테이크-1","바비큐립-1","초코케이크-2","티본스테이크-1"))
-                    .withMessage(PromotionException.DUPLICATED_MENU.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
         @Test
@@ -48,7 +48,7 @@ class OrdersTest {
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
                             new Orders("제로콜라-1", "샴페인-2", "레드와인-3"))
-                    .withMessage(PromotionException.ALL_DRINK_ORDER.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
 
@@ -63,7 +63,7 @@ class OrdersTest {
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
                             new Orders("티본스테이크-1","바비큐립-0","초코케이크-2"))
-                    .withMessage(PromotionException.EACH_AMOUNT_UNDER_MIN.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
         @Test
@@ -72,7 +72,7 @@ class OrdersTest {
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
                             new Orders("티본스테이크-10","바비큐립-8","초코케이크-3"))
-                    .withMessage(PromotionException.TOTAL_AMOUNT_OVER_MAX.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
         @DisplayName("총 주문 개수가")

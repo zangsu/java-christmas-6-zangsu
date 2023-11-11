@@ -35,7 +35,7 @@ public enum Menu {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.name.equals(menuName))
                 .findFirst()
-                .orElseThrow(PromotionException.NO_SUCH_MENU::makeException);
+                .orElseThrow(PromotionException.INVALID_ORDER::makeException);
     }
 
     public MenuType getType(){

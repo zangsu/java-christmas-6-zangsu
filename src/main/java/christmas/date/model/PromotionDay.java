@@ -48,7 +48,7 @@ public class PromotionDay {
 
     private static void validateDate(int date){
         if(date < Const.DECEMBER_DATE_START || date > Const.DECEMBER_DATE_END){
-            throw PromotionException.INVALID_DATE_NUMBER.makeException();
+            throw PromotionException.INVALID_DATE.makeException();
         }
     }
 
