@@ -1,7 +1,7 @@
 package christmas.date.model;
 
 import christmas.constance.Const;
-import christmas.constance.ExceptionMessage;
+import christmas.constance.PromotionException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Set;
@@ -48,7 +48,7 @@ public class PromotionDay {
 
     private static void validateDate(int date){
         if(date < Const.DECEMBER_DATE_START || date > Const.DECEMBER_DATE_END){
-            throw ExceptionMessage.INVALID_DATE_NUMBER.makeException();
+            throw PromotionException.INVALID_DATE_NUMBER.makeException();
         }
     }
 
