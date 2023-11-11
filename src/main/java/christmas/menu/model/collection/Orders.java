@@ -1,18 +1,23 @@
-package christmas.menu.model;
+package christmas.menu.model.collection;
 
 import christmas.constance.Const;
 import christmas.constance.PromotionException;
+import christmas.menu.model.Menu;
+import christmas.menu.model.MenuAndCount;
+import christmas.menu.model.MenuType;
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
+import java.util.Map.Entry;
 
-public class OrderSheet {
-    private final EnumMap<Menu, Integer> orderSheet = new EnumMap<>(Menu.class);
+public class Orders {
+    private final EnumMap<Menu, Integer> orders = new EnumMap<>(Menu.class);
     private int totalOrderAmount = 0;
 
     //TODO : 입력받는 order들은 항상 [$메뉴 이름]-[$숫자] 형식이어야 한다.
 
     /**
-     * "[$메뉴 이름]-[$숫자]" 형식의 주문들을 전달받아 해당 주문들을 저장한 {@link OrderSheet}를 생성합니다.
+     * "[$메뉴 이름]-[$숫자]" 형식의 주문들을 전달받아 해당 주문들을 저장한 {@link Orders}를 생성합니다.
      * @param orders 1 개 이상의 "[$메뉴 이름]-[$숫자]" 형식의 주문
      * @throws IllegalArgumentException <br>
      * 존재하지 않는 메뉴를 주문한 경우 <br>
@@ -22,7 +27,7 @@ public class OrderSheet {
      * 주문이 음료로만 구성된 경우 <br>
      * 동일한 메뉴의 주문이 2개 이상 존재하는 경우 <br>
      */
-    public OrderSheet(String... orders){
+    public Orders(String... orders){
         Arrays.stream(orders)
                 .forEach(this::addMenu);
         validateOrderSize();
@@ -30,7 +35,7 @@ public class OrderSheet {
     }
 
     private void validateOrderSize() {
-        int orderCount = orderSheet.keySet().size();
+        int orderCount = orders.keySet().size();
         if(orderCount < Const.TOTAL_MENU_AMOUNT_MIN){
             throw PromotionException.TOTAL_AMOUNT_UNDER_MIN.makeException();
         }
@@ -45,7 +50,7 @@ public class OrderSheet {
     private void addMenu(Menu menu, Integer count){
         validate(menu, count);
         totalOrderAmount += count;
-        orderSheet.put(menu, count);
+        orders.put(menu, count);
     }
 
     private void validate(Menu menu, Integer count) {
@@ -54,7 +59,7 @@ public class OrderSheet {
     }
 
     private void validateDuplication(Menu menu) {
-        if(orderSheet.containsKey(menu)){
+        if(orders.containsKey(menu)){
             throw PromotionException.DUPLICATED_MENU.makeException();
         }
     }
@@ -76,10 +81,18 @@ public class OrderSheet {
     }
 
     private int getNonDrinkCount() {
-        return (int) orderSheet.keySet().stream()
+        return (int) orders.keySet().stream()
                 .filter(menu -> menu.getType() != MenuType.DRINK)
                 .count();
     }
-    //TODO
-    public void getBills(){}
+
+    public List<MenuAndCount> getOrders() {
+        return orders.entrySet().stream()
+                .map(this::getMenuAndCount)
+                .toList();
+    }
+
+    private MenuAndCount getMenuAndCount(Entry<Menu, Integer> entry){
+        return new MenuAndCount(entry.getKey(), entry.getValue());
+    }
 }
