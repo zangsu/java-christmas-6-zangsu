@@ -1,5 +1,6 @@
 package christmas.menu.model;
 
+import christmas.constance.PromotionException;
 import java.util.Arrays;
 
 public enum Menu {
@@ -30,11 +31,10 @@ public enum Menu {
         this.price = price;
     }
 
-    //TODO : 예외 발생 시켜야 함
     public static Menu from(String menuName){
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.name.equals(menuName))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(PromotionException.NO_SUCH_MENU::makeException);
     }
 }
