@@ -4,7 +4,7 @@ import christmas.menu.model.MenuAndCount;
 import java.util.List;
 
 public class OrderSheet {
-    List<MenuAndCount> orderSheet;
+    private final List<MenuAndCount> orderSheet;
 
     public OrderSheet(List<MenuAndCount> orderSheet) {
         this.orderSheet = orderSheet;

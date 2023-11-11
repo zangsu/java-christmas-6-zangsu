@@ -7,6 +7,6 @@ public class MenuService {
 
     public OrderSheet getOrderSheet(String... inputOrders){
         Orders orders = new Orders(inputOrders);
-        return new OrderSheet(orders.getOrders());
+        return orders.getOrderSheet();
     }
 }

@@ -86,7 +86,10 @@ public class Orders {
                 .count();
     }
 
-    public List<MenuAndCount> getOrders() {
+    public OrderSheet getOrderSheet(){
+        return new OrderSheet(this.getOrders());
+    }
+    private List<MenuAndCount> getOrders() {
         return orders.entrySet().stream()
                 .map(this::getMenuAndCount)
                 .toList();
