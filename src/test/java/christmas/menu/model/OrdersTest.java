@@ -1,6 +1,7 @@
 package christmas.menu.model;
 
 import christmas.constance.PromotionException;
+import christmas.menu.model.collection.Orders;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -8,18 +9,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class OrderSheetTest {
+class OrdersTest {
 
     @Nested
-    @DisplayName("OrderSheet 생성 테스트")
-    class OrderSheet_생성_테스트{
+    @DisplayName("Orders 생성 테스트")
+    class Orders_생성_테스트 {
 
         @Test
-        @DisplayName("각 메뉴를 한번씩 주문하면 OrderSheet가 정상적으로 생성된다.")
+        @DisplayName("각 메뉴를 한번씩 주문하면 Orders가 정상적으로 생성된다.")
         void 한_번씩_주문(){
             Assertions.assertThatNoException()
                     .isThrownBy(() ->
-                            new OrderSheet("티본스테이크-1","바비큐립-1","초코케이크-2","제로콜라-1")
+                            new Orders("티본스테이크-1","바비큐립-1","초코케이크-2","제로콜라-1")
                     );
         }
 
@@ -28,17 +29,17 @@ class OrderSheetTest {
         void 아무것도_주문하지_않음(){
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
-                            new OrderSheet()
+                            new Orders()
                     )
-                    .withMessage(PromotionException.TOTAL_AMOUNT_UNDER_MIN.getMessage());
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
         @Test
         @DisplayName("메뉴를 중복 주문하면 예외가 발생한다.")
         void 중복_주문(){
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
-                            new OrderSheet("티본스테이크-1","바비큐립-1","초코케이크-2","티본스테이크-1"))
-                    .withMessage(PromotionException.DUPLICATED_MENU.getMessage());
+                            new Orders("티본스테이크-1","바비큐립-1","초코케이크-2","티본스테이크-1"))
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
         @Test
@@ -46,8 +47,8 @@ class OrderSheetTest {
         void 음료만_주문(){
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
-                            new OrderSheet("제로콜라-1", "샴페인-2", "레드와인-3"))
-                    .withMessage(PromotionException.ALL_DRINK_ORDER.getMessage());
+                            new Orders("제로콜라-1", "샴페인-2", "레드와인-3"))
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
 
@@ -61,8 +62,8 @@ class OrderSheetTest {
         void 주문_개수가_0개(){
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
-                            new OrderSheet("티본스테이크-1","바비큐립-0","초코케이크-2"))
-                    .withMessage(PromotionException.EACH_AMOUNT_UNDER_MIN.getMessage());
+                            new Orders("티본스테이크-1","바비큐립-0","초코케이크-2"))
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
         @Test
@@ -70,8 +71,8 @@ class OrderSheetTest {
         void 총_주문_수_초과(){
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() ->
-                            new OrderSheet("티본스테이크-10","바비큐립-8","초코케이크-3"))
-                    .withMessage(PromotionException.TOTAL_AMOUNT_OVER_MAX.getMessage());
+                            new Orders("티본스테이크-10","바비큐립-8","초코케이크-3"))
+                    .withMessage(PromotionException.INVALID_ORDER.getMessage());
         }
 
         @DisplayName("총 주문 개수가")
@@ -80,7 +81,7 @@ class OrderSheetTest {
         void 총_주문_개수_테스트(int amount){
             Assertions.assertThatNoException()
                     .isThrownBy(() ->
-                            new OrderSheet("티본스테이크-" + amount));
+                            new Orders("티본스테이크-" + amount));
         }
     }
 }
