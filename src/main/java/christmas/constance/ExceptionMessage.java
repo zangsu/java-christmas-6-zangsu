@@ -9,12 +9,12 @@ public enum ExceptionMessage {
     }
     public static final String PREFIX = "[ERROR] ";
 
-    /*public String getMessage() {
+    public String getMessage() {
         return PREFIX + message;
-    }*/
+    }
 
     //abstract IllegalArgumentException illegalArgumentException();
     public IllegalArgumentException makeException(){
-        return new IllegalArgumentException(PREFIX + message);
+        return new IllegalArgumentException(this.getMessage());
     }
 }

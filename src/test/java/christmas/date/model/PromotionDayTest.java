@@ -1,5 +1,6 @@
 package christmas.date.model;
 
+import christmas.constance.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -25,7 +26,8 @@ class PromotionDayTest {
         public void 객체_생성_예외_테스트(int date) {
 
             Assertions.assertThatIllegalArgumentException()
-                    .isThrownBy(() -> PromotionDay.of(date));
+                    .isThrownBy(() -> PromotionDay.of(date))
+                    .withMessage(ExceptionMessage.INVALID_DATE_NUMBER.getMessage());
         }
     }
 
