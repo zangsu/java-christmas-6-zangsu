@@ -16,6 +16,10 @@ public class MenuAndCount {
         return menu;
     }
 
+    public String getName(){
+        return menu.getName();
+    }
+
     public int getCount() {
         return count;
     }
