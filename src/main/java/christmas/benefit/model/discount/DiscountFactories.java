@@ -84,7 +84,7 @@ public enum DiscountFactories {
 
     public Discount generate(PromotionDay promotionDay, OrderSheet orderSheet){
         return new Discount(getType(), getDiscountPrice(promotionDay, orderSheet));
-    };
+    }
 
     DiscountFactories(DiscountType type) {
         this.type = type;
