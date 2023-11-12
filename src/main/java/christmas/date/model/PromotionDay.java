@@ -89,4 +89,15 @@ public class PromotionDay {
     public int getDDayFromXMax() {
         return christmas.compareTo(this.localDate);
     }
+
+    /**
+     * 달의 시작부터 며칠이 지났는지를 구합니다.
+     * @return 달의 시작부터 지난 날 <br>
+     * example : <br>
+     * 0 -> 12월 1일 <br>
+     * 10 -> 12월 11일<br>
+     */
+    public int getDayFromStart(){
+        return this.localDate.getDayOfMonth() - 1;
+    }
 }
