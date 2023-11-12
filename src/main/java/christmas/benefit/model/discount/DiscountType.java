@@ -16,4 +16,8 @@ public enum DiscountType {
     DiscountType(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
