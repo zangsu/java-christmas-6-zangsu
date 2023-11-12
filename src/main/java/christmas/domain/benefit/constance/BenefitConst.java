@@ -8,4 +8,6 @@ public interface BenefitConst {
     int WEEKDAY_DISCOUNT_PRICE = 2_023;
     int WEEKEND_DISCOUNT_PRICE = 2_023;
     int SPECIAL_DISCOUNT_PRICE = 1_000;
+
+    int MIN_PRICE_FOR_BENEFIT = 10_000;
 }

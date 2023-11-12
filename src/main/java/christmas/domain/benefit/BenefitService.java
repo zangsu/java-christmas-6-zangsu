@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.benefit.constance.BenefitConst;
 import christmas.domain.benefit.model.Benefits;
 import christmas.domain.benefit.model.discount.Discount;
 import christmas.domain.benefit.model.discount.DiscountFactories;
@@ -14,6 +15,9 @@ public class BenefitService {
 
     //TODO
     public Benefits getBenefits(PromotionDay promotionDay, OrderSheet orderSheet){
+        if(orderSheet.getTotalPrice() < BenefitConst.MIN_PRICE_FOR_BENEFIT){
+            return new Benefits(List.of());
+        }
         return null;
     }
 }
