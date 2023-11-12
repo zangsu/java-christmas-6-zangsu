@@ -1,10 +1,13 @@
 package christmas.benefit.model.discount;
 
-import christmas.benefit.constance.BenefitConst;
-import christmas.date.model.PromotionDay;
-import christmas.menu.model.Menu;
-import christmas.menu.model.MenuAndCount;
-import christmas.menu.model.collection.OrderSheet;
+import christmas.domain.benefit.constance.BenefitConst;
+import christmas.domain.benefit.model.discount.Discount;
+import christmas.domain.benefit.model.discount.DiscountFactories;
+import christmas.domain.benefit.model.discount.DiscountType;
+import christmas.domain.date.model.PromotionDay;
+import christmas.domain.menu.model.Menu;
+import christmas.domain.menu.model.MenuAndCount;
+import christmas.domain.menu.model.collection.OrderSheet;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;

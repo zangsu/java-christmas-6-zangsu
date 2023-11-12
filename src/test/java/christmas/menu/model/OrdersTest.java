@@ -1,7 +1,7 @@
 package christmas.menu.model;
 
-import christmas.constance.PromotionException;
-import christmas.menu.model.collection.Orders;
+import christmas.exception.PromotionException;
+import christmas.domain.menu.model.collection.Orders;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

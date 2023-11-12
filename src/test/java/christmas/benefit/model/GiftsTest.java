@@ -1,9 +1,9 @@
 package christmas.benefit.model;
 
-import christmas.benefit.constance.BenefitConst;
-import christmas.benefit.model.gift.Gifts;
-import christmas.menu.model.Menu;
-import christmas.menu.model.MenuAndCount;
+import christmas.domain.benefit.constance.BenefitConst;
+import christmas.domain.benefit.model.gift.Gifts;
+import christmas.domain.menu.model.Menu;
+import christmas.domain.menu.model.MenuAndCount;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;

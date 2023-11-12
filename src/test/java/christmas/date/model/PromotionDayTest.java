@@ -1,6 +1,7 @@
 package christmas.date.model;
 
-import christmas.constance.PromotionException;
+import christmas.exception.PromotionException;
+import christmas.domain.date.model.PromotionDay;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

@@ -1,8 +1,7 @@
 package christmas.menu.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import christmas.constance.PromotionException;
+import christmas.exception.PromotionException;
+import christmas.domain.menu.model.Menu;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 

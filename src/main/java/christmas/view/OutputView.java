@@ -1,10 +1,10 @@
 package christmas.view;
 
-import christmas.badge.model.Badge;
-import christmas.benefit.model.Benefits;
-import christmas.date.model.PromotionDay;
-import christmas.menu.model.MenuAndCount;
-import christmas.menu.model.collection.OrderSheet;
+import christmas.domain.badge.model.Badge;
+import christmas.domain.benefit.model.Benefits;
+import christmas.domain.date.model.PromotionDay;
+import christmas.domain.menu.model.MenuAndCount;
+import christmas.domain.menu.model.collection.OrderSheet;
 import christmas.view.constance.ViewConst;
 import christmas.view.io.Printer;
 import java.text.DecimalFormat;
