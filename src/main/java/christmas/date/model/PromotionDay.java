@@ -98,6 +98,10 @@ public class PromotionDay {
      * 10 -> 12월 11일<br>
      */
     public int getDayFromStart(){
-        return this.localDate.getDayOfMonth() - 1;
+        return getDate() - 1;
+    }
+
+    public int getDate(){
+        return this.localDate.getDayOfMonth();
     }
 }
