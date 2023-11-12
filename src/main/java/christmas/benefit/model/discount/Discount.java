@@ -1,14 +1,29 @@
 package christmas.benefit.model.discount;
 
+import christmas.benefit.model.Benefit;
 import java.util.Objects;
 
-public class Discount {
+public class Discount implements Benefit {
     private final DiscountType type;
     private final int price;
 
     public Discount(DiscountType type, int price) {
         this.type = type;
         this.price = price;
+    }
+
+    @Override
+    public String getDescription() {
+        return type.getName();
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    public DiscountType getType() {
+        return type;
     }
 
     @Override
@@ -28,11 +43,4 @@ public class Discount {
         return Objects.hash(type, price);
     }
 
-    public DiscountType getType() {
-        return type;
-    }
-
-    public int getPrice() {
-        return price;
-    }
 }
