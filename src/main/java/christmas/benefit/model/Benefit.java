@@ -2,6 +2,6 @@ package christmas.benefit.model;
 
 public interface Benefit {
 
-    String getName();
+    String getDescription();
     int getPrice();
 }
