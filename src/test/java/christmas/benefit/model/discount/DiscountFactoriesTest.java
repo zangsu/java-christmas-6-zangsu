@@ -6,12 +6,15 @@ import christmas.menu.model.Menu;
 import christmas.menu.model.MenuAndCount;
 import christmas.menu.model.collection.OrderSheet;
 import java.util.List;
+import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class DiscountFactoriesTest {
@@ -228,6 +231,77 @@ class DiscountFactoriesTest {
             discounts.forEach(
                     discount -> Assertions.assertThat(discount.getType())
                             .isNotEqualTo(DiscountType.SPECIAL)
+            );
+        }
+    }
+
+    @Nested
+    @DisplayName("전체 할인 테스트")
+    class 전체_할인_테스트 {
+
+        static Stream<Arguments> DateOrdersAndDiscounts() {
+            return Stream.of(
+                    //평일, 스페셜, D-day
+                    Arguments.of(
+                            3,
+                            List.of(
+                                    new MenuAndCount(Menu.ICE_CREAM, 3)
+                            ),
+                            List.of(
+                                    new Discount(DiscountType.WEEKDAY, 6069),
+                                    new Discount(DiscountType.SPECIAL, 1000),
+                                    new Discount(DiscountType.D_DAY, 1200)
+                            )
+                    ),
+                    //주말, D-day
+                    Arguments.of(
+                            2,
+                            List.of(
+                                    new MenuAndCount(Menu.T_BONE_STEAK, 2)
+                            ),
+                            List.of(
+                                    new Discount(DiscountType.WEEKEND, 4046),
+                                    new Discount(DiscountType.D_DAY, 1100)
+                            )
+                    ),
+                    //평일, 스페셜
+                    Arguments.of(
+                            31,
+                            List.of(
+                                    new MenuAndCount(Menu.CHOCOLATE_CAKE, 2)
+                            ),
+                            List.of(
+                                    new Discount(DiscountType.WEEKDAY, 4046),
+                                    new Discount(DiscountType.SPECIAL, 1000)
+                            )
+                    ),
+                    //D-day, 평일, 스페셜
+                    Arguments.of(
+                            25,
+                            List.of(
+                                    new MenuAndCount(Menu.ICE_CREAM, 2)
+                            ),
+                            List.of(
+                                    new Discount(DiscountType.WEEKDAY, 4046),
+                                    new Discount(DiscountType.D_DAY, 3400),
+                                    new Discount(DiscountType.SPECIAL, 1000)
+                            )
+                    )
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource("DateOrdersAndDiscounts")
+        void 전체_할인_테스트(int date, List<MenuAndCount> orders, List<Discount> expectedDiscounts) {
+            PromotionDay day = PromotionDay.from(date);
+            OrderSheet orderSheet = new OrderSheet(orders);
+
+            List<Discount> discounts = DiscountFactories.of(day, orderSheet);
+
+            Assertions.assertThat(discounts.size())
+                    .isEqualTo(expectedDiscounts.size());
+            discounts.forEach(discount ->
+                    Assertions.assertThat(expectedDiscounts).contains(discount)
             );
         }
     }
