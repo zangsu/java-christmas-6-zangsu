@@ -1,11 +1,16 @@
-package christmas.benefit.model;
+package christmas.benefit.model.gift;
 
 import christmas.benefit.constance.BenefitConst;
+import christmas.benefit.model.Benefit;
 import christmas.menu.model.MenuAndCount;
 import java.util.Collections;
 import java.util.List;
 
-public class Gifts implements Benefit{
+/**
+ * 증정품 목록을 저장하기 위한 클래스 입니다.
+ * <p>증정품은 판매 메뉴와 증정 개수로 구성되어 있습니다.</p>
+ */
+public class Gifts implements Benefit {
 
     private final List<MenuAndCount> gifts;
 
@@ -13,11 +18,19 @@ public class Gifts implements Benefit{
         this.gifts = gifts;
     }
 
+    /**
+     * 증정 이벤트 설명을 반환합니다.
+     * @return
+     */
     @Override
-    public String getName() {
-        return BenefitConst.GiftDescription;
+    public String getDescription() {
+        return BenefitConst.GIFT_DESCRIPTION;
     }
 
+    /**
+     * 전체 증정품의 총 합계 금액을 반환합니다.
+     * @return 증정된 메뉴의 총 합계 금액
+     */
     @Override
     public int getPrice() {
         return gifts.stream()
