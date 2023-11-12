@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.benefit.model.Benefits;
 import christmas.domain.benefit.model.discount.Discount;
 import christmas.domain.benefit.model.discount.DiscountFactories;
 import christmas.domain.date.model.PromotionDay;
@@ -9,5 +10,10 @@ import java.util.List;
 public class BenefitService {
     public List<Discount> getDiscounts(PromotionDay promotionDay, OrderSheet orderSheet) {
         return DiscountFactories.of(promotionDay, orderSheet);
+    }
+
+    //TODO
+    public Benefits getBenefits(PromotionDay promotionDay, OrderSheet orderSheet){
+        return null;
     }
 }

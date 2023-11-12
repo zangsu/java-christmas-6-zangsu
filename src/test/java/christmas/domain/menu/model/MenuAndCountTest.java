@@ -1,4 +1,4 @@
-package christmas.menu.model;
+package christmas.domain.menu.model;
 
 import christmas.domain.menu.model.Menu;
 import christmas.domain.menu.model.MenuAndCount;

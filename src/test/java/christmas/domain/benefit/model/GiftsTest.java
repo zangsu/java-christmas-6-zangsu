@@ -1,4 +1,4 @@
-package christmas.benefit.model;
+package christmas.domain.benefit.model;
 
 import christmas.domain.benefit.constance.BenefitConst;
 import christmas.domain.benefit.model.gift.Gifts;

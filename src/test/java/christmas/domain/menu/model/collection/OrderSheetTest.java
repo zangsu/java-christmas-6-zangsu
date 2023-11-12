@@ -1,4 +1,4 @@
-package christmas.menu.model.collection;
+package christmas.domain.menu.model.collection;
 
 import christmas.domain.menu.model.collection.OrderSheet;
 import christmas.domain.menu.model.collection.Orders;

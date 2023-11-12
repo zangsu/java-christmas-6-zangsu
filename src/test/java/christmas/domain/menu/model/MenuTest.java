@@ -1,4 +1,4 @@
-package christmas.menu.model;
+package christmas.domain.menu.model;
 
 import christmas.exception.PromotionException;
 import christmas.domain.menu.model.Menu;

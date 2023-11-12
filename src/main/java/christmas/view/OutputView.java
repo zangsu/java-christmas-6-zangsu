@@ -18,6 +18,11 @@ public class OutputView {
         printer.printMessage(ViewConst.HELLO_MESSAGE);
     }
 
+    public void printException(IllegalArgumentException e){
+        printer.printMessage(e.getMessage());
+        printer.printEmptyLine();
+    }
+
     public void printBenefitTitle(PromotionDay promotionDay) {
         printer.printMessageUsingFormat(ViewConst.FORMAT_BENEFIT_TITLE, promotionDay.getDate());
         printer.printEmptyLine();

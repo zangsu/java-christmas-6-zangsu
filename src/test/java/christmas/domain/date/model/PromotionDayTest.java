@@ -1,4 +1,4 @@
-package christmas.date.model;
+package christmas.domain.date.model;
 
 import christmas.exception.PromotionException;
 import christmas.domain.date.model.PromotionDay;
