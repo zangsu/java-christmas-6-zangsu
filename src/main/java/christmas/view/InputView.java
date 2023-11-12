@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.view.constance.ViewConst;
 import christmas.view.io.Printer;
 import christmas.view.io.Reader;
 import java.util.List;

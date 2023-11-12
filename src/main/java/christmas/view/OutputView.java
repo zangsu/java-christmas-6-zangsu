@@ -1,11 +1,11 @@
 package christmas.view;
 
 import christmas.badge.model.Badge;
-import christmas.benefit.model.Benefit;
 import christmas.benefit.model.Benefits;
 import christmas.date.model.PromotionDay;
 import christmas.menu.model.MenuAndCount;
 import christmas.menu.model.collection.OrderSheet;
+import christmas.view.constance.ViewConst;
 import christmas.view.io.Printer;
 import java.text.DecimalFormat;
 import java.util.List;
