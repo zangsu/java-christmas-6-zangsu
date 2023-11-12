@@ -1,7 +1,6 @@
 package christmas.date.model;
 
-import christmas.constance.Const;
-import christmas.constance.DateConst;
+import christmas.date.constance.DateConst;
 import christmas.constance.PromotionException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;

@@ -1,7 +1,6 @@
 package christmas.menu.model.collection;
 
-import christmas.constance.Const;
-import christmas.constance.MenuConst;
+import christmas.menu.constance.MenuConst;
 import christmas.constance.PromotionException;
 import christmas.menu.model.Menu;
 import christmas.menu.model.MenuAndCount;

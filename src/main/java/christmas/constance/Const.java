@@ -1,7 +1,5 @@
 package christmas.constance;
 
-public class Const {
-    public static final String ORDERS_DELIMITER = ",";
-
-
+public interface Const {
+    String ORDERS_DELIMITER = ",";
 }
