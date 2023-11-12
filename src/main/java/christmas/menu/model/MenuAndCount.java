@@ -12,6 +12,14 @@ public class MenuAndCount {
         this.count = count;
     }
 
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
     public int getTotalPrice(){
         return menu.getPrice() * count;
     }
