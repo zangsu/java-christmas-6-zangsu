@@ -87,7 +87,7 @@ class PromotionDayTest {
                     .isTrue();
         }
 
-        @ParameterizedTest(name = "12월 {0}일은 스페셜데이가 아닙니다..")
+        @ParameterizedTest(name = "12월 {0}일은 스페셜데이가 아닙니다.")
         @ValueSource(ints = {1, 2, 4, 5, 9, 23, 26, 30})
         void noSpecialDayTest(int date){
             PromotionDay noSpecialDay = PromotionDay.from(date);
