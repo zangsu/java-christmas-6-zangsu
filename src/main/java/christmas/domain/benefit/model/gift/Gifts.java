@@ -20,6 +20,7 @@ public class Gifts implements Benefit {
 
     /**
      * 증정 이벤트 설명을 반환합니다.
+     *
      * @return
      */
     @Override
@@ -29,6 +30,7 @@ public class Gifts implements Benefit {
 
     /**
      * 전체 증정품의 총 합계 금액을 반환합니다.
+     *
      * @return 증정된 메뉴의 총 합계 금액
      */
     @Override

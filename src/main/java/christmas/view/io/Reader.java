@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Reader {
-    public int getInteger(){
+    public int getInteger() {
         return Integer.parseInt(Console.readLine());
     }
 
-    public List<String> getStringsByDelimiter(String delimiter){
+    public List<String> getStringsByDelimiter(String delimiter) {
         String input = Console.readLine().trim();
         validNotEndWithDelimiter(delimiter, input);
         return Arrays.stream(input.split(delimiter))
@@ -17,7 +17,7 @@ public class Reader {
     }
 
     private void validNotEndWithDelimiter(String delimiter, String input) {
-        if(getLastString(input).equals(delimiter)){
+        if (getLastString(input).equals(delimiter)) {
             throw new IllegalArgumentException();
         }
     }

@@ -1,7 +1,6 @@
 package christmas.domain.date.model;
 
 import christmas.exception.PromotionException;
-import christmas.domain.date.model.PromotionDay;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -78,11 +77,11 @@ class PromotionDayTest {
 
     @Nested
     @DisplayName("스페셜 데이 테스트")
-    class 스페셜_데이_테스트{
+    class 스페셜_데이_테스트 {
 
         @ParameterizedTest(name = "12월 {0}일은 스페셜데이 입니다.")
         @ValueSource(ints = {3, 10, 17, 24, 25, 31})
-        void specialDayTest(int date){
+        void specialDayTest(int date) {
             PromotionDay specialDay = PromotionDay.from(date);
             Assertions.assertThat(specialDay.isSpecialDay())
                     .isTrue();
@@ -90,7 +89,7 @@ class PromotionDayTest {
 
         @ParameterizedTest(name = "12월 {0}일은 스페셜데이가 아닙니다.")
         @ValueSource(ints = {1, 2, 4, 5, 9, 23, 26, 30})
-        void noSpecialDayTest(int date){
+        void noSpecialDayTest(int date) {
             PromotionDay noSpecialDay = PromotionDay.from(date);
             Assertions.assertThat(noSpecialDay.isSpecialDay())
                     .isFalse();

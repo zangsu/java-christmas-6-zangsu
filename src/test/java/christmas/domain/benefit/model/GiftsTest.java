@@ -63,16 +63,6 @@ class GiftsTest {
     @DisplayName("포함 항목 반환 테스트")
     class getGiftsTest {
 
-        @ParameterizedTest
-        @MethodSource("orderList")
-        void 생성될_때_가지고_있던_항목을_정확하게_반환한다(List<MenuAndCount> orderList) {
-            Gifts gifts = new Gifts(orderList);
-
-            List<MenuAndCount> giftList = gifts.getGifts();
-            Assertions.assertThat(giftList)
-                    .containsExactly(orderList.toArray(MenuAndCount[]::new));
-        }
-
         static Stream<List<MenuAndCount>> orderList() {
             return Stream.of(
                     List.of(
@@ -86,6 +76,16 @@ class GiftsTest {
                     ),
                     List.of(new MenuAndCount(Menu.CHAMPAGNE, 1))
             );
+        }
+
+        @ParameterizedTest
+        @MethodSource("orderList")
+        void 생성될_때_가지고_있던_항목을_정확하게_반환한다(List<MenuAndCount> orderList) {
+            Gifts gifts = new Gifts(orderList);
+
+            List<MenuAndCount> giftList = gifts.getGifts();
+            Assertions.assertThat(giftList)
+                    .containsExactly(orderList.toArray(MenuAndCount[]::new));
         }
     }
 }

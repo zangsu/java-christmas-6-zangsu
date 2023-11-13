@@ -29,7 +29,7 @@ public class InputView {
             List<String> orders = reader.getStringsByDelimiter(ViewConst.ORDERS_DELIMITER);
             validOrdersPattern(orders);
             return orders;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw PromotionException.INVALID_ORDER.makeException();
         }
     }
@@ -38,7 +38,7 @@ public class InputView {
         boolean allMatch = orders.stream()
                 .map(orderMenuRegex::matcher)
                 .allMatch(Matcher::matches);
-        if(!allMatch) {
+        if (!allMatch) {
             throw PromotionException.INVALID_ORDER.makeException();
         }
     }

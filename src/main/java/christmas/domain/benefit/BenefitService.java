@@ -3,10 +3,8 @@ package christmas.domain.benefit;
 import christmas.domain.benefit.constance.BenefitConst;
 import christmas.domain.benefit.model.Benefit;
 import christmas.domain.benefit.model.Benefits;
-import christmas.domain.benefit.model.discount.Discount;
 import christmas.domain.benefit.model.discount.DiscountFactories;
 import christmas.domain.benefit.model.gift.GiftFactories;
-import christmas.domain.benefit.model.gift.Gifts;
 import christmas.domain.date.model.PromotionDay;
 import christmas.domain.menu.model.collection.OrderSheet;
 import java.util.ArrayList;
@@ -14,8 +12,8 @@ import java.util.List;
 
 public class BenefitService {
 
-    public Benefits getBenefits(PromotionDay promotionDay, OrderSheet orderSheet){
-        if(orderSheet.getTotalPrice() < BenefitConst.MIN_PRICE_FOR_BENEFIT){
+    public Benefits getBenefits(PromotionDay promotionDay, OrderSheet orderSheet) {
+        if (orderSheet.getTotalPrice() < BenefitConst.MIN_PRICE_FOR_BENEFIT) {
             return new Benefits(List.of());
         }
         List<Benefit> benefits = new ArrayList<>();

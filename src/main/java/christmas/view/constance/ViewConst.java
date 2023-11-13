@@ -1,7 +1,5 @@
 package christmas.view.constance;
 
-import java.text.DecimalFormat;
-
 public interface ViewConst {
 
     String ORDERS_DELIMITER = ",";

@@ -46,8 +46,8 @@ public class PromotionDay {
         return new PromotionDay(localDate);
     }
 
-    private static void validateDate(int date){
-        if(date < DateConst.DECEMBER_DATE_START || date > DateConst.DECEMBER_DATE_END){
+    private static void validateDate(int date) {
+        if (date < DateConst.DECEMBER_DATE_START || date > DateConst.DECEMBER_DATE_END) {
             throw PromotionException.INVALID_DATE.makeException();
         }
     }
@@ -92,16 +92,14 @@ public class PromotionDay {
 
     /**
      * 달의 시작부터 며칠이 지났는지를 구합니다.
-     * @return 달의 시작부터 지난 날 <br>
-     * example : <br>
-     * 0 -> 12월 1일 <br>
-     * 10 -> 12월 11일<br>
+     *
+     * @return 달의 시작부터 지난 날 <br> example : <br> 0 -> 12월 1일 <br> 10 -> 12월 11일<br>
      */
-    public int getDayFromStart(){
+    public int getDayFromStart() {
         return getDate() - 1;
     }
 
-    public int getDate(){
+    public int getDate() {
         return this.localDate.getDayOfMonth();
     }
 }

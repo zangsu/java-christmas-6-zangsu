@@ -32,12 +32,13 @@ public enum GiftFactories implements BenefitFactory {
         this.count = count;
     }
 
-    public static List<Benefit> of(PromotionDay promotionDay, OrderSheet orderSheet){
+    public static List<Benefit> of(PromotionDay promotionDay, OrderSheet orderSheet) {
         return Arrays.stream(GiftFactories.values())
                 .filter(factory -> factory.canApply(promotionDay, orderSheet))
                 .map(factory -> factory.generate(promotionDay, orderSheet))
                 .toList();
     }
+
     @Override
     abstract public boolean canApply(PromotionDay promotionDay, OrderSheet orderSheet);
 

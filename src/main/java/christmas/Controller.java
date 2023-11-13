@@ -30,7 +30,7 @@ public class Controller {
         this.handler = handler;
     }
 
-    public void run(){
+    public void run() {
         printHello();
 
         PromotionDay promotionDay = getPromotionDay();
@@ -50,25 +50,25 @@ public class Controller {
         outputView.sayHello();
     }
 
-    private PromotionDay getPromotionDay(){
+    private PromotionDay getPromotionDay() {
         return getResultUsingExceptionHandler(() -> {
             int visitDate = inputView.getVisitDate();
             return dateService.getPromotionDay(visitDate);
         });
     }
 
-    private OrderSheet getOrderSheet(){
+    private OrderSheet getOrderSheet() {
         return getResultUsingExceptionHandler(() -> {
             List<String> orders = inputView.getOrders();
             return menuService.getOrderSheet(orders.toArray(String[]::new));
         });
     }
 
-    private <T> T getResultUsingExceptionHandler(Supplier<T> logic){
+    private <T> T getResultUsingExceptionHandler(Supplier<T> logic) {
         return handler.get(logic, outputView::printException);
     }
 
-    private Benefits getBenefits(PromotionDay promotionDay, OrderSheet orderSheet){
+    private Benefits getBenefits(PromotionDay promotionDay, OrderSheet orderSheet) {
         return benefitService.getBenefits(promotionDay, orderSheet);
     }
 
@@ -84,12 +84,12 @@ public class Controller {
         printBadge(bills.getBadge());
     }
 
-    private void printOrderSheeet(OrderSheet orderSheet){
+    private void printOrderSheeet(OrderSheet orderSheet) {
         outputView.printOrderMenu(orderSheet);
         outputView.printTotalPriceNoDiscount(orderSheet);
     }
 
-    private void printBenefits(Benefits benefits){
+    private void printBenefits(Benefits benefits) {
         outputView.printGifts(benefits);
         outputView.printBenefits(benefits);
         outputView.printTotalBenefitPrice(benefits);

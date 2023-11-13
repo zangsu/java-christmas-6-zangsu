@@ -10,9 +10,9 @@ public enum Menu {
     CAESAR_SALAD(MenuType.APPETIZER, "시저샐러드", 8_000),
 
     T_BONE_STEAK(MenuType.MAIN, "티본스테이크", 55_000),
-    BARBCUE_RIBS(MenuType.MAIN, "바비큐립",54_000),
-    SEAFOOD_PASTA(MenuType.MAIN, "해산물파스타",35_000),
-    CHRISTMAS_PASTA(MenuType.MAIN, "크리스마스파스타",25_000),
+    BARBCUE_RIBS(MenuType.MAIN, "바비큐립", 54_000),
+    SEAFOOD_PASTA(MenuType.MAIN, "해산물파스타", 35_000),
+    CHRISTMAS_PASTA(MenuType.MAIN, "크리스마스파스타", 25_000),
 
     CHOCOLATE_CAKE(MenuType.DESSERT, "초코케이크", 15_000),
     ICE_CREAM(MenuType.DESSERT, "아이스크림", 5_000),
@@ -31,14 +31,14 @@ public enum Menu {
         this.price = price;
     }
 
-    public static Menu from(String menuName){
+    public static Menu from(String menuName) {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.name.equals(menuName))
                 .findFirst()
                 .orElseThrow(PromotionException.INVALID_ORDER::makeException);
     }
 
-    public MenuType getType(){
+    public MenuType getType() {
         return this.type;
     }
 

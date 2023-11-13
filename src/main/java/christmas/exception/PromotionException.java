@@ -8,7 +8,7 @@ public enum PromotionException {
     public static final String PREFIX = "[ERROR] ";
     private final String message;
 
-    PromotionException(String message){
+    PromotionException(String message) {
         this.message = message;
     }
 
@@ -17,7 +17,7 @@ public enum PromotionException {
     }
 
     //abstract IllegalArgumentException illegalArgumentException();
-    public IllegalArgumentException makeException(){
+    public IllegalArgumentException makeException() {
         return new IllegalArgumentException(this.getMessage());
     }
 }

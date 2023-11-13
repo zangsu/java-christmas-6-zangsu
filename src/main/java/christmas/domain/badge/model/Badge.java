@@ -37,14 +37,14 @@ public enum Badge {
         this.name = name;
     }
 
-    abstract boolean match(int price);
-
-    public static Badge from(int price){
+    public static Badge from(int price) {
         return Arrays.stream(Badge.values())
                 .filter(badge -> badge.match(price))
                 .findFirst()
                 .orElse(NONE);
     }
+
+    abstract boolean match(int price);
 
     public String getName() {
         return name;

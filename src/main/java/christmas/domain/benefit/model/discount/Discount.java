@@ -13,20 +13,6 @@ public class Discount implements Benefit {
     }
 
     @Override
-    public String getDescription() {
-        return type.getName();
-    }
-
-    @Override
-    public int getPrice() {
-        return price;
-    }
-
-    public DiscountType getType() {
-        return type;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -41,6 +27,20 @@ public class Discount implements Benefit {
     @Override
     public int hashCode() {
         return Objects.hash(type, price);
+    }
+
+    @Override
+    public String getDescription() {
+        return type.getName();
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    public DiscountType getType() {
+        return type;
     }
 
 }

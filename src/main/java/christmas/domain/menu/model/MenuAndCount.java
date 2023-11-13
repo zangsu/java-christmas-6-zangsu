@@ -18,7 +18,7 @@ public class MenuAndCount {
         return menu;
     }
 
-    public String getName(){
+    public String getName() {
         return menu.getName();
     }
 
@@ -26,11 +26,11 @@ public class MenuAndCount {
         return count;
     }
 
-    public MenuType getMenuType(){
+    public MenuType getMenuType() {
         return menu.getType();
     }
 
-    public int getTotalPrice(){
+    public int getTotalPrice() {
         return menu.getPrice() * count;
     }
 
