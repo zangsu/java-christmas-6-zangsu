@@ -21,7 +21,6 @@ public class OutputView {
 
     public void printException(IllegalArgumentException e){
         printer.printMessage(e.getMessage());
-        printer.printEmptyLine();
     }
 
     public void printBenefitTitle(int date) {
@@ -77,11 +76,12 @@ public class OutputView {
         printer.printMessage(ViewConst.TITLE_TOTAL_PRICE_WITH_DISCOUNT);
         printer.printMessageUsingFormat(ViewConst.FORMAT_PRICE,
                 getMoneyFormat(discountedPrice));
+        printer.printEmptyLine();
     }
 
     public void printBadge(Badge badge){
         printer.printMessage(ViewConst.TITLE_BADGE);
-        printer.printMessage(badge.name());
+        printer.printMessage(badge.getName());
     }
 
     private String getMoneyFormat(int price) {

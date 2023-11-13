@@ -45,4 +45,8 @@ public enum Badge {
                 .findFirst()
                 .orElse(NONE);
     }
+
+    public String getName() {
+        return name;
+    }
 }
