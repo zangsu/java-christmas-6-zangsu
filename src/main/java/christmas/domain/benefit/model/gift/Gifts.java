@@ -3,6 +3,7 @@ package christmas.domain.benefit.model.gift;
 import christmas.domain.benefit.constance.BenefitConst;
 import christmas.domain.benefit.model.Benefit;
 import christmas.domain.menu.model.MenuAndCount;
+import christmas.domain.menu.model.collection.OrderSheet;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,10 +13,10 @@ import java.util.List;
  */
 public class Gifts implements Benefit {
 
-    private final List<MenuAndCount> gifts;
+    private final OrderSheet gifts;
 
     public Gifts(List<MenuAndCount> gifts) {
-        this.gifts = gifts;
+        this.gifts = new OrderSheet(gifts);
     }
 
     /**
@@ -35,14 +36,10 @@ public class Gifts implements Benefit {
      */
     @Override
     public int getBenefitPrice() {
-        return gifts.stream()
-                .mapToInt(MenuAndCount::getTotalPrice)
-                .map(number -> -number)
-                .sum();
+        return -gifts.getTotalPrice();
     }
 
-    // TODO : OrderSheet 와 통합 방법 고민 필요
     public List<MenuAndCount> getGifts() {
-        return Collections.unmodifiableList(gifts);
+        return gifts.getOrderSheet();
     }
 }
