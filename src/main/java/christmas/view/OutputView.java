@@ -59,7 +59,7 @@ public class OutputView {
                 benefits.getBenefits(),
                 (Benefit benefit) -> new Object[]{
                         benefit.getDescription(),
-                        getMoneyFormat(benefit.getPrice())
+                        getMoneyFormat(benefit.getBenefitPrice())
                 });
         printer.printEmptyLine();
     }
@@ -67,7 +67,7 @@ public class OutputView {
     public void printTotalBenefitPrice(Benefits benefits) {
         int totalPrice = benefits.getTotalPrice();
         printer.printMessage(ViewConst.TITLE_BENEFIT_PRICE);
-        printer.printMessageUsingFormat(ViewConst.FORMAT_BENEFIT_PRICE,
+        printer.printMessageUsingFormat(ViewConst.FORMAT_PRICE,
                 getMoneyFormat(totalPrice));
         printer.printEmptyLine();
     }

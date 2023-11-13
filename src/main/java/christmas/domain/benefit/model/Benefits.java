@@ -42,7 +42,7 @@ public class Benefits {
      */
     public int getTotalPrice() {
         return benefits.stream()
-                .mapToInt(Benefit::getPrice)
+                .mapToInt(Benefit::getBenefitPrice)
                 .sum();
     }
 
@@ -54,7 +54,7 @@ public class Benefits {
     public int getDiscountPrice() {
         return benefits.stream()
                 .filter(benefit -> benefit.getClass().equals(Discount.class))
-                .mapToInt(Benefit::getPrice)
+                .mapToInt(Benefit::getBenefitPrice)
                 .sum();
     }
 }

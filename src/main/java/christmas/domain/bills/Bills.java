@@ -38,7 +38,7 @@ public class Bills {
     }
 
     public int getDiscountedPrice() {
-        return orderSheet.getTotalPrice() - benefits.getDiscountPrice();
+        return orderSheet.getTotalPrice() + benefits.getDiscountPrice();
     }
 
     public static class BillsBuilder {

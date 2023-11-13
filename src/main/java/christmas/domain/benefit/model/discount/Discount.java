@@ -35,8 +35,8 @@ public class Discount implements Benefit {
     }
 
     @Override
-    public int getPrice() {
-        return price;
+    public int getBenefitPrice() {
+        return -price;
     }
 
     public DiscountType getType() {

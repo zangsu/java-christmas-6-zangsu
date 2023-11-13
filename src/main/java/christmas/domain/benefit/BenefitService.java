@@ -10,6 +10,7 @@ import christmas.domain.menu.model.collection.OrderSheet;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO : 혜택이 없을 경우 -0원 으로 나오는 부분
 public class BenefitService {
 
     public Benefits getBenefits(PromotionDay promotionDay, OrderSheet orderSheet) {

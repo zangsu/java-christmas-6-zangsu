@@ -34,9 +34,10 @@ public class Gifts implements Benefit {
      * @return 증정된 메뉴의 총 합계 금액
      */
     @Override
-    public int getPrice() {
+    public int getBenefitPrice() {
         return gifts.stream()
                 .mapToInt(MenuAndCount::getTotalPrice)
+                .map(number -> -number)
                 .sum();
     }
 

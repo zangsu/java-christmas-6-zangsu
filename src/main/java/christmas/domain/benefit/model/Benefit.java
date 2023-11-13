@@ -4,5 +4,5 @@ public interface Benefit {
 
     String getDescription();
 
-    int getPrice();
+    int getBenefitPrice();
 }

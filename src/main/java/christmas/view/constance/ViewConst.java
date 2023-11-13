@@ -19,8 +19,7 @@ public interface ViewConst {
 
     String FORMAT_BENEFIT_TITLE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
     String FORMAT_PRICE = "%s원";
-    String FORMAT_BENEFIT_PRICE = "-%s원";
     String FORMAT_ORDER_MENU = "%s - %d개";
-    String FORMAT_BENEFIT = "%s: " + FORMAT_BENEFIT_PRICE;
+    String FORMAT_BENEFIT = "%s: " + FORMAT_PRICE;
 
 }

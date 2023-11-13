@@ -27,35 +27,35 @@ class GiftsTest {
     @Nested
     @DisplayName("금액 계산 테스트")
     class 금액_계산_테스트 {
+        @ParameterizedTest(name = "총 합계 금액 {1} 원이 정상적으로 구해진다.")
+        @DisplayName("Benefit.getPrice()를 호출하면 올바른 혜택 금액을 반환한다.")
+        @MethodSource("ListAndTotalPrice")
+        void getPrice_테스트(List<MenuAndCount> orderList, int expectedPrice) {
+            Gifts gifts = new Gifts(orderList);
+            Assertions.assertThat(gifts.getBenefitPrice())
+                    .isEqualTo(expectedPrice);
+        }
+
         static Stream<Arguments> ListAndTotalPrice() {
             return Stream.of(
                     Arguments.of(
                             List.of(
                                     new MenuAndCount(Menu.CHRISTMAS_PASTA, 3), //75_000
                                     new MenuAndCount(Menu.SEAFOOD_PASTA, 5)),//175_000
-                            250_000
+                            -250_000
                     ),
                     Arguments.of(
                             List.of(
                                     new MenuAndCount(Menu.BARBCUE_RIBS, 2), //108_000
                                     new MenuAndCount(Menu.CHOCOLATE_CAKE, 1),//15_000
                                     new MenuAndCount(Menu.MUSHROOM_SOUP, 3) //18_000
-                            ), 141_000
+                            ), -141_000
                     ),
                     Arguments.of(
                             List.of(new MenuAndCount(Menu.CHAMPAGNE, 1)),//175_000
-                            25_000
+                            -25_000
                     )
             );
-        }
-
-        @ParameterizedTest(name = "총 합계 금액 {1} 원이 정상적으로 구해진다.")
-        @DisplayName("Benefit.getPrice()를 호출하면 올바른 혜택 금액을 반환한다.")
-        @MethodSource("ListAndTotalPrice")
-        void getPrice_테스트(List<MenuAndCount> orderList, int expectedPrice) {
-            Gifts gifts = new Gifts(orderList);
-            Assertions.assertThat(gifts.getPrice())
-                    .isEqualTo(expectedPrice);
         }
     }
 
