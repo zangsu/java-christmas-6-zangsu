@@ -22,8 +22,6 @@ public class Orders {
      */
     private int totalOrderAmount = 0;
 
-    //TODO : 입력받는 order들은 항상 [$메뉴 이름]-[$숫자] 형식이어야 한다.
-
     /**
      * "[$메뉴 이름]-[$숫자]" 형식의 주문들을 전달받아 해당 주문들을 저장한 {@link Orders}를 생성합니다.
      * @param orders 1 개 이상의 "[$메뉴 이름]-[$숫자]" 형식의 주문

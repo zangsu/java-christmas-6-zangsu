@@ -50,7 +50,6 @@ public class Controller {
         outputView.sayHello();
     }
 
-    //TODO NumberFormatException 처리
     private PromotionDay getPromotionDay(){
         return getResultUsingExceptionHandler(() -> {
             int visitDate = inputView.getVisitDate();
@@ -58,7 +57,6 @@ public class Controller {
         });
     }
 
-    //TODO 메뉴 개수에서 NumberFormatException
     private OrderSheet getOrderSheet(){
         return getResultUsingExceptionHandler(() -> {
             List<String> orders = inputView.getOrders();

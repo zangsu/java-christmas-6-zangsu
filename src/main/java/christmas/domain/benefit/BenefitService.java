@@ -24,7 +24,6 @@ public class BenefitService {
         return new Benefits(benefits);
     }
 
-    //TODO
     private List<Benefit> getGifts(PromotionDay promotionDay, OrderSheet orderSheet) {
         return GiftFactories.of(promotionDay, orderSheet);
     }
