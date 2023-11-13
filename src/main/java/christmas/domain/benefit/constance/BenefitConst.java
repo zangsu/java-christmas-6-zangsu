@@ -10,4 +10,6 @@ public interface BenefitConst {
     int SPECIAL_DISCOUNT_PRICE = 1_000;
 
     int MIN_PRICE_FOR_BENEFIT = 10_000;
+
+    int MIN_PRICE_FOR_CHAMPAGNE = 120_000;
 }

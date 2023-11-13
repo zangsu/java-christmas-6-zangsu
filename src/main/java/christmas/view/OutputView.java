@@ -10,6 +10,7 @@ import christmas.view.io.Printer;
 import java.text.DecimalFormat;
 import java.util.List;
 
+//TODO : 없음 출력
 public class OutputView {
     private static final DecimalFormat DECIMAL_FORMAT_PRICE = new DecimalFormat("###,##0");
     Printer printer = new Printer();

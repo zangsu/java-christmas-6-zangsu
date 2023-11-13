@@ -1,9 +1,7 @@
 package christmas.domain.benefit.model.discount;
 
 import christmas.domain.benefit.constance.BenefitConst;
-import christmas.domain.benefit.model.discount.Discount;
-import christmas.domain.benefit.model.discount.DiscountFactories;
-import christmas.domain.benefit.model.discount.DiscountType;
+import christmas.domain.benefit.model.Benefit;
 import christmas.domain.date.model.PromotionDay;
 import christmas.domain.menu.model.Menu;
 import christmas.domain.menu.model.MenuAndCount;
@@ -54,13 +52,15 @@ class DiscountFactoriesTest {
             PromotionDay day = PromotionDay.from(date);
 
             //when
-            List<Discount> discounts = DiscountFactories.of(day, emptySheet);
+            List<Benefit> discounts = DiscountFactories.of(day, emptySheet);
 
             //then
-            discounts.forEach(
-                    discount -> Assertions.assertThat(discount.getType())
-                            .isNotEqualTo(DiscountType.D_DAY)
-            );
+            discounts.stream()
+                    .map(benefit -> (Discount) benefit)
+                    .forEach(
+                            discount -> Assertions.assertThat(discount.getType())
+                                    .isNotEqualTo(DiscountType.D_DAY)
+                    );
         }
     }
 
@@ -101,14 +101,16 @@ class DiscountFactoriesTest {
                     ));
 
             //when
-            List<Discount> discounts = DiscountFactories.of(day, orderSheet);
+            List<Benefit> discounts = DiscountFactories.of(day, orderSheet);
 
             //then
             Assertions.assertThat(day.isWeekDay()).isFalse();
-            discounts.forEach(
-                    discount -> Assertions.assertThat(discount.getType())
-                            .isNotEqualTo(DiscountType.WEEKDAY)
-            );
+            discounts.stream()
+                    .map(benefit -> (Discount) benefit)
+                    .forEach(
+                            discount -> Assertions.assertThat(discount.getType())
+                                    .isNotEqualTo(DiscountType.WEEKDAY)
+                    );
         }
 
         @Test
@@ -122,14 +124,16 @@ class DiscountFactoriesTest {
                     ));
 
             //when
-            List<Discount> discounts = DiscountFactories.of(day, orderSheet);
+            List<Benefit> discounts = DiscountFactories.of(day, orderSheet);
 
             //then
             Assertions.assertThat(day.isWeekDay()).isTrue();
-            discounts.forEach(
-                    discount -> Assertions.assertThat(discount.getType())
-                            .isNotEqualTo(DiscountType.WEEKDAY)
-            );
+            discounts.stream()
+                    .map(benefit -> (Discount) benefit)
+                    .forEach(
+                            discount -> Assertions.assertThat(discount.getType())
+                                    .isNotEqualTo(DiscountType.WEEKDAY)
+                    );
         }
     }
 
@@ -172,14 +176,16 @@ class DiscountFactoriesTest {
                     ));
 
             //when
-            List<Discount> discounts = DiscountFactories.of(day, orderSheet);
+            List<Benefit> discounts = DiscountFactories.of(day, orderSheet);
 
             //then
             Assertions.assertThat(day.isWeekend()).isFalse();
-            discounts.forEach(
-                    discount -> Assertions.assertThat(discount.getType())
-                            .isNotEqualTo(DiscountType.WEEKEND)
-            );
+            discounts.stream()
+                    .map(benefit -> (Discount) benefit)
+                    .forEach(
+                            discount -> Assertions.assertThat(discount.getType())
+                                    .isNotEqualTo(DiscountType.WEEKEND)
+                    );
         }
 
         @Test
@@ -193,14 +199,16 @@ class DiscountFactoriesTest {
                     ));
 
             //when
-            List<Discount> discounts = DiscountFactories.of(day, orderSheet);
+            List<Benefit> discounts = DiscountFactories.of(day, orderSheet);
 
             //then
             Assertions.assertThat(day.isWeekend()).isTrue();
-            discounts.forEach(
-                    discount -> Assertions.assertThat(discount.getType())
-                            .isNotEqualTo(DiscountType.WEEKEND)
-            );
+            discounts.stream()
+                    .map(benefit -> (Discount) benefit)
+                    .forEach(
+                            discount -> Assertions.assertThat(discount.getType())
+                                    .isNotEqualTo(DiscountType.WEEKEND)
+                    );
         }
     }
 
@@ -227,14 +235,16 @@ class DiscountFactoriesTest {
             PromotionDay day = PromotionDay.from(date);
 
             //when
-            List<Discount> discounts = DiscountFactories.of(day, containSheet);
+            List<Benefit> discounts = DiscountFactories.of(day, containSheet);
 
             //then
             Assertions.assertThat(day.isSpecialDay()).isFalse();
-            discounts.forEach(
-                    discount -> Assertions.assertThat(discount.getType())
-                            .isNotEqualTo(DiscountType.SPECIAL)
-            );
+            discounts.stream()
+                    .map(benefit -> (Discount) benefit)
+                    .forEach(
+                            discount -> Assertions.assertThat(discount.getType())
+                                    .isNotEqualTo(DiscountType.SPECIAL)
+                    );
         }
     }
 
@@ -299,13 +309,15 @@ class DiscountFactoriesTest {
             PromotionDay day = PromotionDay.from(date);
             OrderSheet orderSheet = new OrderSheet(orders);
 
-            List<Discount> discounts = DiscountFactories.of(day, orderSheet);
+            List<Benefit> discounts = DiscountFactories.of(day, orderSheet);
 
             Assertions.assertThat(discounts.size())
                     .isEqualTo(expectedDiscounts.size());
-            discounts.forEach(discount ->
-                    Assertions.assertThat(expectedDiscounts).contains(discount)
-            );
+            discounts.stream()
+                    .map(benefit -> (Discount) benefit)
+                    .forEach(discount ->
+                            Assertions.assertThat(expectedDiscounts).contains(discount)
+                    );
         }
     }
 }
