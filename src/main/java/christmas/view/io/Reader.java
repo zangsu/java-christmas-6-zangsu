@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Reader {
     public int getInteger(){
-        return parseInt(Console.readLine());
+        return Integer.parseInt(Console.readLine());
     }
 
     public List<String> getStringsByDelimiter(String delimiter){
@@ -24,13 +24,5 @@ public class Reader {
 
     private String getLastString(String input) {
         return input.substring(input.length() - 1);
-    }
-
-    private int parseInt(String input){
-        try{
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException();
-        }
     }
 }

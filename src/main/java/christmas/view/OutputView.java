@@ -1,14 +1,15 @@
 package christmas.view;
 
 import christmas.domain.badge.model.Badge;
+import christmas.domain.benefit.model.Benefit;
 import christmas.domain.benefit.model.Benefits;
-import christmas.domain.date.model.PromotionDay;
 import christmas.domain.menu.model.MenuAndCount;
 import christmas.domain.menu.model.collection.OrderSheet;
 import christmas.view.constance.ViewConst;
 import christmas.view.io.Printer;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.function.Function;
 
 //TODO : 없음 출력
 public class OutputView {
@@ -19,7 +20,7 @@ public class OutputView {
         printer.printMessage(ViewConst.HELLO_MESSAGE);
     }
 
-    public void printException(IllegalArgumentException e){
+    public void printException(IllegalArgumentException e) {
         printer.printMessage(e.getMessage());
     }
 
@@ -30,10 +31,9 @@ public class OutputView {
 
     public void printOrderMenu(OrderSheet orderSheet) {
         printer.printMessage(ViewConst.TITLE_ORDER_MENU);
-        orderSheet.getOrderSheet().forEach(orderMenu ->
-                printer.printMessageUsingFormat(ViewConst.FORMAT_ORDER_MENU,
-                        orderMenu.getName(), orderMenu.getCount())
-        );
+        printListUsingFormat(ViewConst.FORMAT_ORDER_MENU,
+                orderSheet.getOrderSheet(),
+                menuAndCount -> new Object[]{menuAndCount.getName(), menuAndCount.getCount()});
         printer.printEmptyLine();
     }
 
@@ -48,23 +48,24 @@ public class OutputView {
     public void printGifts(Benefits benefits) {
         List<MenuAndCount> gifts = benefits.getGifts();
         printer.printMessage(ViewConst.TITLE_GIFT_LIST);
-        gifts.forEach(gift ->
-                printer.printMessageUsingFormat(ViewConst.FORMAT_ORDER_MENU,
-                        gift.getName(), gift.getCount()));
+        printListUsingFormat(ViewConst.FORMAT_ORDER_MENU,
+                gifts,
+                gift -> new Object[]{gift.getName(), gift.getCount()});
         printer.printEmptyLine();
     }
 
-    public void printBenefits(Benefits benefits){
+    public void printBenefits(Benefits benefits) {
         printer.printMessage(ViewConst.TITLE_BENEFIT_LIST);
-        benefits.getBenefits().forEach(benefit ->
-                printer.printMessageUsingFormat(ViewConst.FORMAT_BENEFIT,
+        printListUsingFormat(ViewConst.FORMAT_BENEFIT,
+                benefits.getBenefits(),
+                (Benefit benefit) -> new Object[]{
                         benefit.getDescription(),
-                        getMoneyFormat(benefit.getPrice()))
-        );
+                        getMoneyFormat(benefit.getPrice())
+                });
         printer.printEmptyLine();
     }
 
-    public void printTotalBenefitPrice(Benefits benefits){
+    public void printTotalBenefitPrice(Benefits benefits) {
         int totalPrice = benefits.getTotalPrice();
         printer.printMessage(ViewConst.TITLE_BENEFIT_PRICE);
         printer.printMessageUsingFormat(ViewConst.FORMAT_BENEFIT_PRICE,
@@ -72,20 +73,33 @@ public class OutputView {
         printer.printEmptyLine();
     }
 
-    public void printDiscountedPrice(int discountedPrice){
+    public void printDiscountedPrice(int discountedPrice) {
         printer.printMessage(ViewConst.TITLE_TOTAL_PRICE_WITH_DISCOUNT);
         printer.printMessageUsingFormat(ViewConst.FORMAT_PRICE,
                 getMoneyFormat(discountedPrice));
         printer.printEmptyLine();
     }
 
-    public void printBadge(Badge badge){
+    public void printBadge(Badge badge) {
         printer.printMessage(ViewConst.TITLE_BADGE);
         printer.printMessage(badge.getName());
     }
 
     private String getMoneyFormat(int price) {
         return DECIMAL_FORMAT_PRICE.format(price);
+    }
+
+    private <T> void printListUsingFormat(String format,
+                                          List<T> instances,
+                                          Function<T, Object[]> argsExtractor) {
+        if (instances.isEmpty()) {
+            printer.printMessage(ViewConst.NONE);
+            return;
+        }
+
+        instances.forEach(instance ->
+                printer.printMessageUsingFormat(format, argsExtractor.apply(instance))
+        );
     }
 }
 
