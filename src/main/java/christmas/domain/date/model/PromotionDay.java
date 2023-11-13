@@ -29,7 +29,7 @@ public class PromotionDay {
      */
     private static final Set<Integer> specialDay = Set.of(3, 10, 17, 24, 25, 31);
 
-    private static final LocalDate christmas = LocalDate.of(2023, 12, 25);
+    private static final LocalDate christmas = LocalDate.of(DateConst.YEAR, DateConst.MONTH, 25);
 
     /**
      * 날짜 정보를 기억합니다.
