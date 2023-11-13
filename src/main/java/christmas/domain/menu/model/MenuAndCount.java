@@ -26,8 +26,12 @@ public class MenuAndCount {
         return count;
     }
 
-    public MenuType getMenuType() {
+    /*public MenuType getMenuType() {
         return menu.getType();
+    }*/
+
+    public boolean isTypeOf(MenuType type){
+        return menu.isTypeOf(type);
     }
 
     public int getTotalPrice() {

@@ -68,16 +68,16 @@ public class Orders {
     }
 
     private void validateContainsNonDrink() {
-        int nonDrinkCount = getNonDrinkCount();
-        if (nonDrinkCount == 0) {
+        if (hasOnlyDrinkMenu()) {
             throw PromotionException.INVALID_ORDER.makeException();
         }
     }
 
-    private int getNonDrinkCount() {
-        return (int) orders.keySet().stream()
-                .filter(menu -> menu.getType() != MenuType.DRINK)
-                .count();
+    private boolean hasOnlyDrinkMenu() {
+        return orders.keySet().stream()
+                .dropWhile(menu -> menu.isTypeOf(MenuType.DRINK))
+                .findAny()
+                .isEmpty();
     }
 
     /**

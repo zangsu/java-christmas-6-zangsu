@@ -38,8 +38,11 @@ public enum Menu {
                 .orElseThrow(PromotionException.INVALID_ORDER::makeException);
     }
 
-    public MenuType getType() {
+    /*public MenuType getType() {
         return this.type;
+    }*/
+    public boolean isTypeOf(MenuType type){
+        return this.type.equals(type);
     }
 
     public String getName() {

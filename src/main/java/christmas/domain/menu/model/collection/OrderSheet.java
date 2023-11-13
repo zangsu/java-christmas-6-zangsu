@@ -27,12 +27,12 @@ public class OrderSheet {
 
     public boolean hasMenuOfType(MenuType type) {
         return orderSheet.stream()
-                .anyMatch(menuAndCount -> menuAndCount.getMenuType().equals(type));
+                .anyMatch(menuAndCount -> menuAndCount.isTypeOf(type));
     }
 
     public int getCountOfMenuType(MenuType type) {
         return orderSheet.stream()
-                .filter(menuAndCount -> menuAndCount.getMenuType().equals(type))
+                .filter(menuAndCount -> menuAndCount.isTypeOf(type))
                 .mapToInt(MenuAndCount::getCount)
                 .sum();
     }
