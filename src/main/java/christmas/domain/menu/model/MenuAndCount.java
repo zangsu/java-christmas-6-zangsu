@@ -14,10 +14,6 @@ public class MenuAndCount {
         this.count = count;
     }
 
-    public Menu getMenu() {
-        return menu;
-    }
-
     public String getName() {
         return menu.getName();
     }
@@ -25,10 +21,6 @@ public class MenuAndCount {
     public int getCount() {
         return count;
     }
-
-    /*public MenuType getMenuType() {
-        return menu.getType();
-    }*/
 
     public boolean isTypeOf(MenuType type){
         return menu.isTypeOf(type);
