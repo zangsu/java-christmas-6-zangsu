@@ -24,8 +24,8 @@ public class OutputView {
         printer.printEmptyLine();
     }
 
-    public void printBenefitTitle(PromotionDay promotionDay) {
-        printer.printMessageUsingFormat(ViewConst.FORMAT_BENEFIT_TITLE, promotionDay.getDate());
+    public void printBenefitTitle(int date) {
+        printer.printMessageUsingFormat(ViewConst.FORMAT_BENEFIT_TITLE, date);
         printer.printEmptyLine();
     }
 

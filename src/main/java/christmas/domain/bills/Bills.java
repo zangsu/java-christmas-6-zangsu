@@ -11,7 +11,7 @@ public class Bills {
     private final Benefits benefits;
     private final Badge badge;
 
-    private static class BillsBuilder{
+    public static class BillsBuilder{
 
         int date;
         OrderSheet orderSheet;
