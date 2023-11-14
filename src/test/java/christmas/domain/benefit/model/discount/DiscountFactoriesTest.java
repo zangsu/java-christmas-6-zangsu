@@ -18,6 +18,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayName("할인 적용 테스트")
 class DiscountFactoriesTest {
     OrderSheet emptySheet = new OrderSheet(List.of());
     OrderSheet containSheet = new OrderSheet(

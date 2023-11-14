@@ -22,7 +22,7 @@ public class InputView {
         printer.printMessage(ViewConst.DATE_REQUEST_MESSAGE);
         try {
             return reader.getInteger();
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             throw PromotionException.INVALID_DATE.makeException();
         }
     }

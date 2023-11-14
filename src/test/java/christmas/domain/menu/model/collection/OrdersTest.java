@@ -1,4 +1,4 @@
-package christmas.domain.menu.model;
+package christmas.domain.menu.model.collection;
 
 import christmas.domain.menu.model.collection.Orders;
 import christmas.exception.PromotionException;
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayName("주문 생성 테스트")
 class OrdersTest {
 
     @Nested

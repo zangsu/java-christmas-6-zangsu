@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayName("정규 표현식 테스트")
 public class RegexTest {
     @Nested
     @DisplayName("\"한글-숫자\" 형태의 정규 표현식 테스트")

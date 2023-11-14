@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+@DisplayName("증정품 적용 테스트")
 class GiftFactoriesTest {
 
     PromotionDay promotionDay = PromotionDay.from(24);

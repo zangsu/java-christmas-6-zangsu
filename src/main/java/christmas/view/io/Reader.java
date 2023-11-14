@@ -10,19 +10,28 @@ public class Reader {
         Console.close();
     }
     public int getInteger() {
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        validNotEmptyInput(input);
+        return Integer.parseInt(input);
     }
 
     public List<String> getStringsByDelimiter(String delimiter) {
-        String input = Console.readLine().trim();
+        String input = Console.readLine();
+        validNotEmptyInput(input);
         validNotEndWithDelimiter(delimiter, input);
         return Arrays.stream(input.split(delimiter))
                 .toList();
     }
 
+    private void validNotEmptyInput(String input){
+        if(input == null || input.isBlank()){
+            throw new IllegalArgumentException("빈 입력입니다.");
+        }
+    }
+
     private void validNotEndWithDelimiter(String delimiter, String input) {
         if (getLastString(input).equals(delimiter)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력이 구분자로 끝났습니다.");
         }
     }
 

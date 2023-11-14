@@ -29,9 +29,10 @@ class ControllerTest extends NsTest {
         }
 
         @ParameterizedTest(name = "{0}일은 잘못된 입력으로 오류 메시지를 출력한다.")
-        @ValueSource(strings = {"-1", "a", "32", "0", "1 1", ""})
+        @ValueSource(strings = {"-1", "a", "32", "0", "1 1","\n"," "})
         void 잘못된_날짜_테스트(String date){
             assertSimpleTest(() -> {
+                System.out.println("\"" + date + "\"");
                 runException(date);
                 Assertions.assertThat(output())
                         .contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
@@ -121,7 +122,9 @@ class ControllerTest extends NsTest {
         @ValueSource(strings = {
                 "양송이수프-1, 바비큐립-3, 초코케이크-1",
                 "양송이수프-1,",
-                "",
+                ",양송이수프-1",
+                " ",
+                //"", -> 테스트코드에서는 검증 불가, 아래 테스트 케이스로 대체
                 "양송이수프:1,바비큐립:3"
         })
         void 입력_형식_테스트(String order){
@@ -132,6 +135,7 @@ class ControllerTest extends NsTest {
             });
         }
     }
+    
     @Override
     protected void runMain() {
         controller.run();
