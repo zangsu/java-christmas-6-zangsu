@@ -25,7 +25,12 @@ public enum Badge {
     }
 
     boolean match(int price) {
-        return price >= minPrice && price < maxPrice;
+        return betweenBadgePrice(price);
+    }
+
+    private boolean betweenBadgePrice(int price) {
+        int absPrice = Math.abs(price);
+        return absPrice >= minPrice && absPrice < maxPrice;
     }
 
     public String getName() {
