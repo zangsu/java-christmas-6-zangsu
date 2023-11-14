@@ -31,9 +31,6 @@ public class PromotionDay {
 
     private static final LocalDate christmas = LocalDate.of(DateConst.YEAR, DateConst.MONTH, 25);
 
-    /**
-     * 날짜 정보를 기억합니다.
-     */
     private final LocalDate localDate;
 
     private PromotionDay(LocalDate localDate) {
@@ -52,30 +49,14 @@ public class PromotionDay {
         }
     }
 
-    /**
-     * 해당 날짜가 주말인지 확인합니다.
-     *
-     * @return true - 해당 날짜가 주말인 경우 <br> false - 해당 날짜가 평일인 경우
-     */
     public boolean isWeekend() {
         return weekend.contains(localDate.getDayOfWeek());
     }
 
-    /**
-     * 해당 날짜가 평일인지 확인합니다.
-     *
-     * @return true - 해당 날짜가 평일인 경우 <br> false - 해당 날짜가 주말인 경우
-     */
     public boolean isWeekDay() {
         return !isWeekend();
     }
 
-
-    /**
-     * 해당 날짜가 스페셜 데이 인지 확인합니다.
-     *
-     * @return true - 해당 날짜가 스페셜 데이인 경우 <br> false - 해당 날짜가 스페셜 데이가 아닌 경우
-     */
     public boolean isSpecialDay() {
         int day = this.localDate.getDayOfMonth();
         return specialDay.contains(day);

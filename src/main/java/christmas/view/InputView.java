@@ -14,6 +14,9 @@ public class InputView {
 
     Pattern orderMenuRegex = Pattern.compile("[가-힣]*-\\d*");
 
+    public void closeConsole(){
+        reader.closeConsole();
+    }
     public int getVisitDate() {
         printer.printMessage(ViewConst.DATE_REQUEST_MESSAGE);
         try {

@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Reader {
+
+    public void closeConsole(){
+        Console.close();
+    }
     public int getInteger() {
         return Integer.parseInt(Console.readLine());
     }

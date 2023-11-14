@@ -60,6 +60,7 @@ public class Controller {
     private OrderSheet getOrderSheet() {
         return getResultUsingExceptionHandler(() -> {
             List<String> orders = inputView.getOrders();
+            inputView.closeConsole();
             return menuService.getOrderSheet(orders.toArray(String[]::new));
         });
     }
