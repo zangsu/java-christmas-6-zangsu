@@ -96,10 +96,18 @@ public class Orders {
     }
 
     private void validateAmount(Integer count) {
-        if (count < MenuConst.EACH_MENU_AMOUNT_MIN) {
+        validAmountGreaterThanMinimum(count);
+        validAmountLessThanMaximum(count);
+    }
+
+    private void validAmountLessThanMaximum(Integer count) {
+        if (totalOrderAmount + count > MenuConst.TOTAL_MENU_AMOUNT_MAX) {
             throw PromotionException.INVALID_ORDER.makeException();
         }
-        if (totalOrderAmount + count > MenuConst.TOTAL_MENU_AMOUNT_MAX) {
+    }
+
+    private void validAmountGreaterThanMinimum(Integer count) {
+        if (count < MenuConst.EACH_MENU_AMOUNT_MIN) {
             throw PromotionException.INVALID_ORDER.makeException();
         }
     }

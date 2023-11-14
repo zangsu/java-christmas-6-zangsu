@@ -12,6 +12,7 @@ public class InputView {
     Printer printer = new Printer();
     Reader reader = new Reader();
 
+    /** 입력 형식이 "[$한글]-[$숫자] 형식임을 확인하기 위한 정규표현식" */
     Pattern orderMenuRegex = Pattern.compile("[가-힣]*-\\d*");
 
     public void closeConsole(){
@@ -38,11 +39,16 @@ public class InputView {
     }
 
     private void validOrdersPattern(List<String> orders) {
-        boolean allMatch = orders.stream()
-                .map(orderMenuRegex::matcher)
-                .allMatch(Matcher::matches);
-        if (!allMatch) {
+        if (hasNotMatchesPattern(orders)) {
             throw PromotionException.INVALID_ORDER.makeException();
         }
+    }
+
+    private boolean hasNotMatchesPattern(List<String> orders) {
+        return orders.stream()
+                .map(orderMenuRegex::matcher)
+                .dropWhile(Matcher::matches)
+                .findAny()
+                .isPresent();
     }
 }
