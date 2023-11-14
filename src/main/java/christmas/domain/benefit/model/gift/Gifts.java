@@ -14,7 +14,7 @@ public class Gifts implements Benefit {
 
     private final OrderSheet gifts;
 
-    public Gifts(List<MenuAndCount> gifts) {
+    Gifts(List<MenuAndCount> gifts) {
         this.gifts = new OrderSheet(gifts);
     }
 

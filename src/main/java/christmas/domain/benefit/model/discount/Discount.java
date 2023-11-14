@@ -7,7 +7,7 @@ public class Discount implements Benefit {
     private final DiscountType type;
     private final int price;
 
-    public Discount(DiscountType type, int price) {
+    Discount(DiscountType type, int price) {
         this.type = type;
         this.price = price;
     }
@@ -39,7 +39,7 @@ public class Discount implements Benefit {
         return -price;
     }
 
-    public DiscountType getType() {
+    DiscountType getType() {
         return type;
     }
 

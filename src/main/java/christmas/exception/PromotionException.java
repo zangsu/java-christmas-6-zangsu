@@ -16,7 +16,6 @@ public enum PromotionException {
         return PREFIX + message;
     }
 
-    //abstract IllegalArgumentException illegalArgumentException();
     public IllegalArgumentException makeException() {
         return new IllegalArgumentException(this.getMessage());
     }

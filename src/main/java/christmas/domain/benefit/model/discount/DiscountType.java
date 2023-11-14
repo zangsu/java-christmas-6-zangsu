@@ -13,7 +13,7 @@ public enum DiscountType {
         this.name = name;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 }
