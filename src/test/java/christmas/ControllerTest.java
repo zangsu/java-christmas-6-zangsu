@@ -3,7 +3,7 @@ package christmas;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import christmas.exception.RetryHandler;
+import christmas.exception.handler.RetryHandler;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -149,13 +149,6 @@ class ControllerTest extends NsTest {
     @Nested
     class 정상_동작_테스트 {
 
-        @ParameterizedTest(name = "{0}일 테스트")
-        @DisplayName("주말 테스트")
-        @MethodSource("weekendTest")
-        void 주말_테스트(String date, String orders, String[] expectedResult) {
-            runAndCheckResult(date, orders, expectedResult);
-        }
-
         static Stream<Arguments> weekendTest() {
             return Stream.of(
                     Arguments.of("2",
@@ -232,14 +225,6 @@ class ControllerTest extends NsTest {
             );
         }
 
-
-        @ParameterizedTest(name = "{0}일 테스트")
-        @DisplayName("평일/스페셜 테스트")
-        @MethodSource("weekdaySpecialTest")
-        void 평일_스페셜_테스트(String date, String orders, String[] expectedResult) {
-            runAndCheckResult(date, orders, expectedResult);
-        }
-
         static Stream<Arguments> weekdaySpecialTest() {
             return Stream.of(
                     Arguments.of("10",
@@ -293,13 +278,6 @@ class ControllerTest extends NsTest {
                             }
                     )
             );
-        }
-
-        @ParameterizedTest(name = "{0}일 테스트")
-        @DisplayName("평일/일반 테스트")
-        @MethodSource("weekdayNormalTest")
-        void 평일_일반_테스트(String date, String orders, String[] expectedResult) {
-            runAndCheckResult(date, orders, expectedResult);
         }
 
         static Stream<Arguments> weekdayNormalTest() {
@@ -363,6 +341,27 @@ class ControllerTest extends NsTest {
                             }
                     )
             );
+        }
+
+        @ParameterizedTest(name = "{0}일 테스트")
+        @DisplayName("주말 테스트")
+        @MethodSource("weekendTest")
+        void 주말_테스트(String date, String orders, String[] expectedResult) {
+            runAndCheckResult(date, orders, expectedResult);
+        }
+
+        @ParameterizedTest(name = "{0}일 테스트")
+        @DisplayName("평일/스페셜 테스트")
+        @MethodSource("weekdaySpecialTest")
+        void 평일_스페셜_테스트(String date, String orders, String[] expectedResult) {
+            runAndCheckResult(date, orders, expectedResult);
+        }
+
+        @ParameterizedTest(name = "{0}일 테스트")
+        @DisplayName("평일/일반 테스트")
+        @MethodSource("weekdayNormalTest")
+        void 평일_일반_테스트(String date, String orders, String[] expectedResult) {
+            runAndCheckResult(date, orders, expectedResult);
         }
 
         private void runAndCheckResult(String date, String orders, String... expectedResult) {

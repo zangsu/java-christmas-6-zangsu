@@ -1,4 +1,4 @@
-package christmas.exception;
+package christmas.exception.handler;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
