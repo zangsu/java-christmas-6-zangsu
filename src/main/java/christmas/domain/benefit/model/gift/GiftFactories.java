@@ -24,6 +24,7 @@ public enum GiftFactories implements BenefitFactory {
         }
     };
 
+    private static final GiftFactories[] giftFactories = GiftFactories.values();
     private final Menu menu;
     private final int count;
 
@@ -33,7 +34,7 @@ public enum GiftFactories implements BenefitFactory {
     }
 
     public static List<Benefit> of(PromotionDay promotionDay, OrderSheet orderSheet) {
-        return Arrays.stream(GiftFactories.values())
+        return Arrays.stream(giftFactories)
                 .filter(factory -> factory.canApply(promotionDay, orderSheet))
                 .map(factory -> factory.generate(promotionDay, orderSheet))
                 .toList();

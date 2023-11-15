@@ -7,9 +7,22 @@ public class Discount implements Benefit {
     private final DiscountType type;
     private final int price;
 
-    public Discount(DiscountType type, int price) {
+    Discount(DiscountType type, int price) {
         this.type = type;
         this.price = price;
+    }
+    @Override
+    public String getDescription() {
+        return type.getName();
+    }
+
+    @Override
+    public int getBenefitPrice() {
+        return -price;
+    }
+
+    DiscountType getType() {
+        return type;
     }
 
     @Override
@@ -28,19 +41,4 @@ public class Discount implements Benefit {
     public int hashCode() {
         return Objects.hash(type, price);
     }
-
-    @Override
-    public String getDescription() {
-        return type.getName();
-    }
-
-    @Override
-    public int getBenefitPrice() {
-        return -price;
-    }
-
-    public DiscountType getType() {
-        return type;
-    }
-
 }

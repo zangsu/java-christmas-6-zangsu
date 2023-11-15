@@ -42,11 +42,11 @@ public enum Menu {
         return this.type.equals(type);
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 }

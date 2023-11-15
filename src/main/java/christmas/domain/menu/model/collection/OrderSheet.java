@@ -5,9 +5,7 @@ import christmas.domain.menu.model.MenuType;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * 주문 확인을 위한 불변 클래스입니다.
- */
+/** 주문 확인을 위한 불변 일급 컬렉션 입니다. */
 public class OrderSheet {
     private final List<MenuAndCount> orderSheet;
 

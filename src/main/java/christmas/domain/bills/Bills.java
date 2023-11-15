@@ -21,32 +21,12 @@ public class Bills {
         return new BillsBuilder();
     }
 
-    public int getDate() {
-        return date;
-    }
-
-    public OrderSheet getOrderSheet() {
-        return orderSheet;
-    }
-
-    public Benefits getBenefits() {
-        return benefits;
-    }
-
-    public Badge getBadge() {
-        return badge;
-    }
-
-    public int getDiscountedPrice() {
-        return orderSheet.getTotalPrice() + benefits.getDiscountPrice();
-    }
-
     public static class BillsBuilder {
 
-        int date;
-        OrderSheet orderSheet;
-        Benefits benefits;
-        Badge badge;
+        private int date;
+        private OrderSheet orderSheet;
+        private Benefits benefits;
+        private Badge badge;
 
         public BillsBuilder date(int date) {
             this.date = date;
@@ -72,4 +52,25 @@ public class Bills {
             return new Bills(this.date, this.orderSheet, this.benefits, this.badge);
         }
     }
+
+    public int getDate() {
+        return date;
+    }
+
+    public OrderSheet getOrderSheet() {
+        return orderSheet;
+    }
+
+    public Benefits getBenefits() {
+        return benefits;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public int getDiscountedPrice() {
+        return orderSheet.getTotalPrice() + benefits.getDiscountPrice();
+    }
+
 }

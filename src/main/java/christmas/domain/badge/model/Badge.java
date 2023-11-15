@@ -7,6 +7,8 @@ public enum Badge {
     STAR("별", 5_000, 10_000),
     TREE("트리", 10_000, 20_000),
     SANTA("산타", 20_000, Integer.MAX_VALUE);
+
+    private static final Badge[] badges = Badge.values();
     private final String name;
     private final int minPrice;
     private final int maxPrice;
@@ -18,13 +20,13 @@ public enum Badge {
     }
 
     public static Badge from(int price) {
-        return Arrays.stream(Badge.values())
+        return Arrays.stream(badges)
                 .filter(badge -> badge.match(price))
                 .findFirst()
                 .orElse(NONE);
     }
 
-    boolean match(int price) {
+    private boolean match(int price) {
         return betweenBadgePrice(price);
     }
 
