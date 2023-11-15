@@ -16,23 +16,8 @@ import java.util.Map.Entry;
 public class Orders {
     private final EnumMap<Menu, Integer> orders = new EnumMap<>(Menu.class);
 
-    /**
-     * 총 주문 메뉴의 개수를 저장하며, 해당 개수는 20개를 넘어가서는 안됩니다.
-     */
     private int totalOrderAmount = 0;
 
-    /**
-     * "[$메뉴 이름]-[$숫자]" 형식의 주문들을 전달받아 해당 주문들을 저장한 {@link Orders}를 생성합니다.
-     *
-     * @param orders 1 개 이상의 "[$메뉴 이름]-[$숫자]" 형식의 주문
-     * @throws IllegalArgumentException <br>
-     * 존재하지 않는 메뉴를 주문한 경우 <br>
-     * 주문 메뉴의 개수가 최소 주문 개수 이하인 경우 <br>
-     * 총 주문 개수가 최소 총 주문 개수 미만인 경우 <br>
-     * 총 주문 개수가 최대 총 주문 개수를 초과한 경우 <br>
-     * 주문이 음료로만 구성된 경우 <br>
-     * 동일한 메뉴의 주문이 2개 이상 존재하는 경우 <br>
-     */
     public Orders(String... orders) {
         Arrays.stream(orders)
                 .forEach(this::addMenu);
@@ -52,9 +37,7 @@ public class Orders {
         orders.put(menu, count);
     }
 
-    /**
-     * 해당 주석 아래에는 전체 메뉴의 추가가 끝난 이후 수행되는 검등들이 위치합니다.
-     */
+    /** 해당 주석 아래에는 전체 메뉴의 추가가 끝난 이후 수행되는 검등들이 위치합니다. */
     private void validateOrders() {
         validateOrderSize();
         validateContainsNonDrink();
@@ -80,9 +63,7 @@ public class Orders {
                 .isEmpty();
     }
 
-    /**
-     * 해당 주석 하위에는 각 주문이 추가될 때 마다 수행되는 검증 메서드가 위치합니다.
-     */
+    /**  해당 주석 하위에는 각 주문이 추가될 때 마다 수행되는 검증 메서드가 위치합니다. */
 
     private void validateEachOrder(Menu menu, Integer count) {
         validateDuplication(menu);

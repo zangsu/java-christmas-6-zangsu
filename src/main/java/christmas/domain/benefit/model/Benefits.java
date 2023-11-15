@@ -13,11 +13,6 @@ public class Benefits {
         this.benefits = benefits;
     }
 
-    /**
-     * 증정품 내역을 리턴합니다.
-     *
-     * @return
-     */
     public List<MenuAndCount> getGifts() {
         return benefits.stream()
                 .filter(benefit -> benefit.getClass().equals(Gifts.class))
@@ -26,31 +21,16 @@ public class Benefits {
                 .toList();
     }
 
-    /**
-     * 모든 혜택 내역을 리턴합니다.
-     *
-     * @return 적용된 모든 혜택 내역
-     */
     public List<Benefit> getBenefits() {
         return Collections.unmodifiableList(benefits);
     }
 
-    /**
-     * 전체 혜택 금액을 리턴합니다.
-     *
-     * @return 모든 혜택 금액의 총 합
-     */
     public int getTotalPrice() {
         return benefits.stream()
                 .mapToInt(Benefit::getBenefitPrice)
                 .sum();
     }
 
-    /**
-     * 전체 할인 금액을 리턴합니다.
-     *
-     * @return 혜택 중 할인에 해당하는 금액들의 총 합
-     */
     public int getDiscountPrice() {
         return benefits.stream()
                 .filter(benefit -> benefit.getClass().equals(Discount.class))

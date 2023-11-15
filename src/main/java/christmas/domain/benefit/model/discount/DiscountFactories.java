@@ -65,22 +65,13 @@ public enum DiscountFactories implements BenefitFactory {
     };
 
     private static final DiscountFactories[] discountFactories = DiscountFactories.values();
-    /**
-     * 팩토리가 생성할 Discount 의 타입
-     */
+
     private final DiscountType type;
 
     DiscountFactories(DiscountType type) {
         this.type = type;
     }
 
-    /**
-     * 팩토리들을 순회하며 적용 가능한 모든 Discount 를 생성하여 List로 반환하는 메서드
-     *
-     * @param promotionDay 할인을 적용할 날짜
-     * @param orderSheet   할인을 적용받을 주문서
-     * @return 적용된 할인들의 리스트
-     */
     public static List<Benefit> of(PromotionDay promotionDay, OrderSheet orderSheet) {
         return Arrays.stream(discountFactories)
                 .filter(factory -> factory.canApply(promotionDay, orderSheet))
@@ -88,18 +79,11 @@ public enum DiscountFactories implements BenefitFactory {
                 .toList();
     }
 
-    /**
-     * 할인 받을 금액을 계산한다.
-     *
-     * @param promotionDay 할인을 받을 예약 날짜
-     * @param orderSheet   할인을 적용시킬 주문서
-     * @return 할인 정책에 따라 계산된 할인 금액
-     */
     abstract int getDiscountPrice(PromotionDay promotionDay, OrderSheet orderSheet);
 
     @Override
     public Benefit generate(PromotionDay promotionDay, OrderSheet orderSheet) {
-        return new Discount(getType(), getDiscountPrice(promotionDay, orderSheet));
+        return new Discount(this.getType(), getDiscountPrice(promotionDay, orderSheet));
     }
 
     private DiscountType getType() {

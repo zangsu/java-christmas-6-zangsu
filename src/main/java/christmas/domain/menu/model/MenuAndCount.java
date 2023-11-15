@@ -2,9 +2,6 @@ package christmas.domain.menu.model;
 
 import java.util.Objects;
 
-/**
- * 각 메뉴의 주문 정보를 나타내기 위한 클래스 입니다.
- */
 public class MenuAndCount {
     private final Menu menu;
     private final int count;
